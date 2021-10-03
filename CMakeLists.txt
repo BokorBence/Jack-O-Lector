@@ -9,6 +9,7 @@ include_directories(${SDL2_INCLUDE_DIRS})
 
 add_executable(JackOLector 
 	main.cpp
+	src/button.cpp
 )
 
 target_link_libraries(JackOLector ${SDL2_LIBRARIES})
