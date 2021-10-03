@@ -27,10 +27,11 @@ void Button::button_proccess_event(const SDL_Event* ev)
     }
 }
 
-bool Button::buttonPressed(SDL_Renderer* r) {
+bool Button::draw_button(SDL_Renderer* r) {
     // draw button
     SDL_SetRenderDrawColor(r, this->colour.r, this->colour.g, this->colour.b, this->colour.a);
     SDL_RenderFillRect(r, &this->draw_rect);
+
 
     // if button press detected - reset it so it wouldn't trigger twice
     if (this->pressed) {
