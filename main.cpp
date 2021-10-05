@@ -1,5 +1,6 @@
 #include "SDL.h" 
 #include <iostream>
+#include "SDL2_image/include/SDL_image.h"
 #include "include/button.hpp"
 
 int main(int argc, char* argv[]) {
@@ -18,6 +19,8 @@ int main(int argc, char* argv[]) {
         fprintf(stderr, "create renderer failed: %s\n", SDL_GetError());
         return 1;
     }
+
+    SDL_Surface *surface = IMG_Load("res/level_select.png");
 
     SDL_Texture* txt = NULL;
 
