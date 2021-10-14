@@ -15,5 +15,5 @@ public:
     Scene(std::string title_, std::vector<Button> &buttons_, std::string background_path_);
     ~Scene();
 
-    bool draw_scene(SDL_Renderer* r);
+    bool draw_scene(SDL_Renderer*, SDL_Window*);
 };

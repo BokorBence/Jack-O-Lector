@@ -12,14 +12,14 @@ Scene::~Scene()
 
 }
 
-bool Scene::draw_scene(SDL_Renderer *r)
+bool Scene::draw_scene(SDL_Renderer *renderer, SDL_Window* window)
 {
 	bool success = true;
 	//TODO title drawing
 
 	for each  (Button button in buttons)
 	{
-		success = success && button.draw_button(r);
+		success = success && button.draw_button(renderer, window);
 	}
 
 	//TODO background

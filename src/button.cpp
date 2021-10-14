@@ -1,4 +1,6 @@
 #include "../include/button.hpp"
+#include "../SDL2_image/include/SDL_image.h"
+#include <iostream>
 
 Button::Button(int r, int g, int b, int a, int x, int y, int width, int height, std::string text_)
 {
@@ -27,10 +29,20 @@ void Button::button_proccess_event(const SDL_Event* ev)
     }
 }
 
-bool Button::draw_button(SDL_Renderer* r) {
+bool Button::draw_button(SDL_Renderer* renderer, SDL_Window* window) {
     // draw button
-    SDL_SetRenderDrawColor(r, this->colour.r, this->colour.g, this->colour.b, this->colour.a);
-    SDL_RenderFillRect(r, &this->draw_rect);
+    SDL_SetRenderDrawColor(renderer, this->colour.r, this->colour.g, this->colour.b, this->colour.a);
+   // SDL_RenderFillRect(r, &this->draw_rect);
+
+    SDL_Surface* window_surface = SDL_GetWindowSurface(window);
+
+    if (!(IMG_Init(IMG_INIT_PNG) & IMG_INIT_PNG))
+    {
+        std::cout << "SDL_IMG for png initialization failed " << IMG_GetError();
+    }
+    SDL_Surface* surface = IMG_Load("resources/level_select.png");
+    SDL_BlitSurface(surface, NULL, window_surface, NULL);
+
 
 
     // if button press detected - reset it so it wouldn't trigger twice

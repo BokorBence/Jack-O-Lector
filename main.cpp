@@ -2,6 +2,7 @@
 #include <iostream>
 #include "SDL2_image/include/SDL_image.h"
 #include "include/button.hpp"
+#include <fstream>
 
 int main(int argc, char* argv[]) {
     int quit = 0;
@@ -20,7 +21,7 @@ int main(int argc, char* argv[]) {
         return 1;
     }
 
-    SDL_Surface *surface = IMG_Load("res/level_select.png");
+
 
     SDL_Texture* txt = NULL;
 
@@ -38,7 +39,15 @@ int main(int argc, char* argv[]) {
         STATE_IN_GAME,
     } state = STATE_IN_MENU;
 
-    while (!quit) {
+    Uint32 frameTime, frameStart;
+    const Uint32 frameDelay = 17;
+
+    while (!quit)
+    {
+        //achieving constant framerate
+        frameStart = SDL_GetTicks();
+        SDL_RenderClear(renderer);
+
         SDL_Event evt;    // no need for new/delete, stack is fine
 
         // event loop and draw loop are separate things, don't mix them
@@ -60,7 +69,7 @@ int main(int argc, char* argv[]) {
         //      SDL_RenderCopy(renderer, txt, NULL, &rct);
 
         if (state == STATE_IN_MENU) {
-            if (start_button.draw_button(renderer)) {
+            if (start_button.draw_button(renderer, window)) {
                 printf("start button pressed\n");
                 state = STATE_IN_GAME;   // state change - button will not be drawn anymore
             }
@@ -69,7 +78,18 @@ int main(int argc, char* argv[]) {
             /* your game logic */
         }
 
-        SDL_RenderPresent(renderer);
+       
+        //std::cout << SDL_GetPerformanceFrequency() << std::endl;
+        
+        
+
+        frameTime = SDL_GetTicks() - frameStart;
+
+        if (frameDelay > frameTime) {
+            SDL_Delay(frameDelay - frameTime);
+        }
+        //SDL_RenderPresent(renderer);
+        SDL_UpdateWindowSurface(window);
     }
     SDL_DestroyWindow(window);
     SDL_DestroyRenderer(renderer);
@@ -102,3 +122,22 @@ int main(int argc, char* argv[]) {
 
     return 0;
 }*/
+
+/*
+frameStart = SDL_GetTicks();
+
+SDL_RenderClear(m_renderer);
+
+
+
+
+SDL_RenderPresent(m_renderer);
+
+
+frameTime = SDL_GetTicks() - frameStart;
+
+if (frameDelay > frameTime) {
+    SDL_Delay(frameDelay - frameTime);
+}
+
+*/
