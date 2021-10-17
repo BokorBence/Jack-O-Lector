@@ -1,19 +1,19 @@
 #pragma once
 #include "button.hpp"
+#include <iostream>
 #include <string>
 #include <vector>
 
 class Scene
 {
 private:
-    std::string background_path;
+    SDL_Renderer* renderer;
+    SDL_Surface* window_surface;
 public:
-    std::string title;
-    std::vector<Button> buttons;
-    SDL_Texture* background;
 
-    Scene(std::string title_, std::vector<Button> &buttons_, std::string background_path_);
+    Scene() {};
     ~Scene();
 
-    bool draw_scene(SDL_Renderer*, SDL_Window*);
+    virtual void draw_scene(SDL_Renderer*, SDL_Surface*) { };
+    //Scene(SDL_Renderer* _renderer, SDL_Surface* _window_surface) : renderer(_renderer), window_surface(_window_surface) {};
 };

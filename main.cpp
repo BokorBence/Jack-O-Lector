@@ -2,13 +2,16 @@
 #include <iostream>
 #include "SDL2_image/include/SDL_image.h"
 #include "include/button.hpp"
+#include "include/main_menu_scene.hpp"
 #include <fstream>
+#include <stack>
 
 int main(int argc, char* argv[]) {
     int quit = 0;
+    std::stack<Scene*> scenes;
     SDL_Init(SDL_INIT_VIDEO);
     SDL_Window* window = NULL;
-    window = SDL_CreateWindow("Jack O'Lector", 350, 150, 800, 500, SDL_WINDOW_SHOWN);
+    window = SDL_CreateWindow("Jack O'Lector", 350, 150, 800, 600, SDL_WINDOW_SHOWN);
     if (window == NULL) {
         fprintf(stderr, "create window failed: %s\n", SDL_GetError());
         return 1;   // 'error' return status is !0. 1 is good enough
@@ -21,23 +24,16 @@ int main(int argc, char* argv[]) {
         return 1;
     }
 
+    SDL_Surface* window_surface = SDL_GetWindowSurface(window);
 
-
-    SDL_Texture* txt = NULL;
-
-    SDL_Rect rct;
-    rct.x = 0;
-    rct.y = 0;
-    rct.h = 500;
-    rct.w = 800;
-
-    // button state - colour and rectangle
-    Button start_button(150, 54, 148, 1, 0, 0, 100, 50, "level select");
-
-    enum {
-        STATE_IN_MENU,
-        STATE_IN_GAME,
-    } state = STATE_IN_MENU;
+    if (!(IMG_Init(IMG_INIT_PNG) & IMG_INIT_PNG))
+    {
+        std::cout << "SDL_IMG for png initialization failed " << IMG_GetError();
+    }
+    Scene* scene;
+    Main_menu_scene main_menu;
+    scene = &main_menu;
+    scenes.push(scene);
 
     Uint32 frameTime, frameStart;
     const Uint32 frameDelay = 17;
@@ -59,24 +55,15 @@ int main(int argc, char* argv[]) {
                 quit = 1;
             }
 
-            // pass event to button
-            start_button.button_proccess_event(&evt);
+
         }
 
         SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
-        SDL_RenderClear(renderer);
+        //SDL_RenderClear(renderer);
 
         //      SDL_RenderCopy(renderer, txt, NULL, &rct);
 
-        if (state == STATE_IN_MENU) {
-            if (start_button.draw_button(renderer, window)) {
-                printf("start button pressed\n");
-                state = STATE_IN_GAME;   // state change - button will not be drawn anymore
-            }
-        }
-        else if (state == STATE_IN_GAME) {
-            /* your game logic */
-        }
+        scenes.top()->draw_scene(renderer, window_surface);
 
        
         //std::cout << SDL_GetPerformanceFrequency() << std::endl;

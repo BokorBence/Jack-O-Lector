@@ -29,19 +29,13 @@ void Button::button_proccess_event(const SDL_Event* ev)
     }
 }
 
-bool Button::draw_button(SDL_Renderer* renderer, SDL_Window* window) {
+bool Button::draw_button(SDL_Renderer* renderer, SDL_Surface* window_surface, SDL_Rect* dest_rect) {
     // draw button
     SDL_SetRenderDrawColor(renderer, this->colour.r, this->colour.g, this->colour.b, this->colour.a);
    // SDL_RenderFillRect(r, &this->draw_rect);
 
-    SDL_Surface* window_surface = SDL_GetWindowSurface(window);
-
-    if (!(IMG_Init(IMG_INIT_PNG) & IMG_INIT_PNG))
-    {
-        std::cout << "SDL_IMG for png initialization failed " << IMG_GetError();
-    }
     SDL_Surface* surface = IMG_Load("resources/level_select.png");
-    SDL_BlitSurface(surface, NULL, window_surface, NULL);
+    SDL_BlitSurface(surface, NULL, window_surface, dest_rect);
 
 
 
