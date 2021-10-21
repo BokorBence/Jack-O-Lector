@@ -11,9 +11,10 @@ class Button
         std::string text;
         void button_proccess_event(const SDL_Event* ev);
         bool draw_button(SDL_Renderer *, SDL_Surface*, SDL_Rect*);
-        Button(int r, int g, int b, int a, int x, int y, int width, int height, std::string text_);
+        Button(int r, int g, int b, int a, int x, int y, int width, int height, std::string filename);
         ~Button();
     private:
         bool pressed;
+        SDL_Surface* surface;
 
 };

@@ -30,10 +30,10 @@ int main(int argc, char* argv[]) {
     {
         std::cout << "SDL_IMG for png initialization failed " << IMG_GetError();
     }
-    Scene* scene;
+  
+
     Main_menu_scene main_menu;
-    scene = &main_menu;
-    scenes.push(scene);
+    scenes.push(&main_menu);
 
     Uint32 frameTime, frameStart;
     const Uint32 frameDelay = 17;
