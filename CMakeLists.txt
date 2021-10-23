@@ -12,6 +12,7 @@ add_executable(JackOLector
 	src/button.cpp
 	src/game.cpp
 	src/entity.cpp
+	src/walkingEntity.cpp
 )
 
 target_link_libraries(JackOLector ${SDL2_LIBRARIES})
