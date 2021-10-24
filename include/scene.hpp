@@ -6,14 +6,17 @@
 
 class Scene
 {
-private:
+protected:
     SDL_Renderer* renderer;
     SDL_Surface* window_surface;
 public:
-
-    Scene() {};
+   
+    Scene();
     ~Scene();
 
-    virtual void draw_scene(SDL_Renderer*, SDL_Surface*) { };
-    //Scene(SDL_Renderer* _renderer, SDL_Surface* _window_surface) : renderer(_renderer), window_surface(_window_surface) {};
+    bool needs_to_be_popped;
+    Scene* push_over_me;
+
+    virtual void draw_scene() { };
+    virtual void handle_events(const SDL_Event &) {};
 };

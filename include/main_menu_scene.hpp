@@ -1,15 +1,18 @@
 #include "scene.hpp"
+#include "button.hpp"
 
 class Main_menu_scene : public Scene
 {
 public:
 	std::string title;
-	std::vector<Button> buttons;
+	Button* level_select;
+	Button* quit;
 	SDL_Surface* background;
 	std::string background_path;
-	Main_menu_scene();
-	//Main_menu_scene(Scene, SDL_Renderer* renderer, SDL_Surface* window_surface) : Scene(renderer, window_surface) {};
-	void  draw_scene(SDL_Renderer*, SDL_Surface*) override;
+	Main_menu_scene(SDL_Renderer*, SDL_Surface*, int*, Scene*);
+	void draw_scene() override;
+	void handle_events(const SDL_Event &) override;
 private:
-	std::vector<SDL_Rect*> dest_rects;
+	int* quitflag;
+	Scene* next;
 };
