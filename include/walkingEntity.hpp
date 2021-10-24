@@ -2,22 +2,19 @@
 #include "../../include/entity.hpp"
 
 
-class walkingEntity{
-private:
-	int x;
-	int y;
+class walkingEntity : public Entity{
+protected:
 	int maxX = 20;
 	int maxY = 20;
 
 public:
+	walkingEntity(int _x, int _y, int _d);
 	walkingEntity();
-	walkingEntity(int _start_x, int _start_y);
-	int getX() { return x; }
-	int getY() { return y; }
 	int moveUp();
 	int moveDown();
 	int moveLeft();
 	int moveRight();
-
+	void turnClockwise();
+	void turnAntiClockwise();
 
 };

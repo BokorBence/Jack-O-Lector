@@ -3,10 +3,10 @@
 
 class Entity {
 
-	private:
+	protected:
 		int x;
 		int y;
-		int d;
+		int d; //0 - down, 1 - right, 2 - up, 3 - left
 
 	public:
 		int get_x(){ return x; }
@@ -22,6 +22,7 @@ class Entity {
 			return 0; 
 		}
 
+		Entity();
 		Entity(int _x, int _y);
 		Entity(int _x, int _y, int _d);
 };

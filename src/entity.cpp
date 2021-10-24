@@ -13,3 +13,10 @@ Entity::Entity(int _x, int _y, int _d)
 	y = _y;
 	d = _d;
 }
+
+Entity::Entity()
+{
+	x = 0;
+	y = 0;
+	d = 0;
+}
