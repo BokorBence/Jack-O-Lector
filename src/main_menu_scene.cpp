@@ -9,11 +9,14 @@ Main_menu_scene::Main_menu_scene(SDL_Renderer* r, SDL_Surface* ws, int* qf, Scen
 	quitflag = qf;
 	renderer = r;
 	window_surface = ws;
-	level_select = new Button(0, 0, 0, 0, 250, 345, 355, 80, "resources/level_select", r, ws);
-	quit = new Button(0, 0, 0, 0, 250, 445, 355, 80, "resources/level_select", r , ws);
-	title = "Jack O'Lector";
-	background_path = "resources/main_menu_background";
-	background = IMG_Load("resources/main_menu_background");
+	level_select = new Button(0, 0, 0, 0, 230, 345, 355, 80, "resources/level_select", r, ws);
+	quit = new Button(0, 0, 0, 0, 230, 445, 355, 80, "resources/quit", r , ws);
+	title = "resources/jack_title.png";
+	background_path = "resources/main_menu_background.png";
+	background = IMG_Load("resources/main_menu_background.png");
+	menu_title = IMG_Load("resources/jack_title.png");
+	title_rect = { 30,100,710,160 };
+
 }
 
 void Main_menu_scene::draw_scene()
@@ -24,6 +27,7 @@ void Main_menu_scene::draw_scene()
 	level_select->draw_button();
 	quit->draw_button();
 
+	SDL_BlitSurface(menu_title, NULL, window_surface, &title_rect);
 }
 
 void Main_menu_scene::handle_events(const SDL_Event &ev)
