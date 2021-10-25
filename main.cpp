@@ -3,6 +3,7 @@
 #include "SDL2_image/include/SDL_image.h"
 #include "include/button.hpp"
 #include "include/main_menu_scene.hpp"
+#include "include/level_select_menu_scene.hpp"
 #include <stack>
 
 int main(int argc, char* argv[]) {
@@ -31,7 +32,12 @@ int main(int argc, char* argv[]) {
     }
   
 
-    Main_menu_scene main_menu(renderer, window_surface, &quit, NULL);
+    Main_menu_scene main_menu(renderer, &quit, NULL);
+    Level_select_menu_scene level_select_menu(renderer, &main_menu);
+
+
+
+    scenes.push(&level_select_menu);
     scenes.push(&main_menu);
 
     Uint32 frameTime, frameStart;
@@ -43,6 +49,7 @@ int main(int argc, char* argv[]) {
     {
         //achieving constant framerate
         frameStart = SDL_GetTicks();
+        SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
         SDL_RenderClear(renderer);
 
         // event loop and draw loop are separate things, don't mix them
@@ -69,10 +76,8 @@ int main(int argc, char* argv[]) {
             scenes.push(next);
         }
 
-        SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
-        //SDL_RenderClear(renderer);
-
-        //      SDL_RenderCopy(renderer, txt, NULL, &rct);
+        
+           //SDL_RenderCopy(renderer, txt, NULL, &rct);
 
         
         scenes.top()->draw_scene();
@@ -80,63 +85,19 @@ int main(int argc, char* argv[]) {
        
         //std::cout << SDL_GetPerformanceFrequency() << std::endl;
         
-        
 
         frameTime = SDL_GetTicks() - frameStart;
 
         if (frameDelay > frameTime) {
             SDL_Delay(frameDelay - frameTime);
         }
-        //SDL_RenderPresent(renderer);
-        SDL_UpdateWindowSurface(window);
+
+       
+         SDL_RenderPresent(renderer);
+
+      // SDL_UpdateWindowSurface(window);
     }
     SDL_DestroyWindow(window);
     SDL_DestroyRenderer(renderer);
     return 0;
 }
-
-/*int main(int argc, char* argv[])
-{
-    std::cout << "proba" << std::endl;
-    SDL_Init(SDL_INIT_VIDEO);
-
-    SDL_Window* window = SDL_CreateWindow(
-        "SDL2Test",
-        SDL_WINDOWPOS_UNDEFINED,
-        SDL_WINDOWPOS_UNDEFINED,
-        640,
-        480,
-        0
-    );
-
-    SDL_Renderer* renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_SOFTWARE);
-    SDL_SetRenderDrawColor(renderer, 0, 0, 0, SDL_ALPHA_OPAQUE);
-    SDL_RenderClear(renderer);
-    SDL_RenderPresent(renderer);
-
-    SDL_Delay(3000);
-
-    SDL_DestroyWindow(window);
-    SDL_Quit();
-
-    return 0;
-}*/
-
-/*
-frameStart = SDL_GetTicks();
-
-SDL_RenderClear(m_renderer);
-
-
-
-
-SDL_RenderPresent(m_renderer);
-
-
-frameTime = SDL_GetTicks() - frameStart;
-
-if (frameDelay > frameTime) {
-    SDL_Delay(frameDelay - frameTime);
-}
-
-*/

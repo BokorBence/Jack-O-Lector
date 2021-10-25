@@ -8,7 +8,6 @@ class Scene
 {
 protected:
     SDL_Renderer* renderer;
-    SDL_Surface* window_surface;
 public:
    
     Scene();

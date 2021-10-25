@@ -13,6 +13,7 @@ add_executable(JackOLector
 	src/button.cpp
 	src/scene.cpp
 	src/main_menu_scene.cpp
+	src/level_select_menu_scene.cpp
 )
 
 target_link_libraries(JackOLector ${SDL2_LIBRARIES} ${SDL2_IMAGE_LIBRARIES})

@@ -1,14 +1,14 @@
 #include "../include/button.hpp"
 #include "../SDL2_image/include/SDL_image.h"
 
-Button::Button(int r, int g, int b, int a, int x, int y, int width, int height, std::string filename, SDL_Renderer* renderer, SDL_Surface* window_surface)
+Button::Button(int r, int g, int b, int a, int x, int y, int width, int height, std::string filename, SDL_Renderer* renderer)
 {
 	colour = { r, g, b, a };
 	draw_rect = { x,y,width,height };
     pressed = false;
     surface = IMG_Load((filename + ".png").c_str());
+    button_tex = SDL_CreateTextureFromSurface(renderer, surface);
     this->renderer = renderer;
-    this->window_surface = window_surface;
 }
 
 Button::~Button()
@@ -30,10 +30,8 @@ void Button::button_proccess_event(const SDL_Event &ev)
     }
 }
 
-bool Button::draw_button() {
+void Button::draw_button() {
 
 
-    SDL_BlitSurface(surface, NULL, window_surface, &draw_rect);
-
-    return false;
+    SDL_RenderCopy(renderer, button_tex, NULL, &draw_rect);
 }
