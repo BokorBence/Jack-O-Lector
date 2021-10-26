@@ -8,14 +8,14 @@ Level_select_menu_scene::Level_select_menu_scene(SDL_Renderer* r, Scene* next_sc
 	level2 = new Button(0, 0, 0, 0, 370, 300, 75, 80, "resources/level_2.png", r);
 	level3 = new Button(0, 0, 0, 0, 575, 300, 75, 80, "resources/level_3.png", r);
 
-	back = new Button(0, 0, 0, 0, 50, 470, 355, 80, "resources/quit.png", r);
+	back = new Button(0, 0, 0, 0, 50, 470, 355, 80, "resources/back.png", r);
 	title = "resources/jack_title.png";
 	background_path = "resources/main_menu_background.png";
 	background = IMG_Load("resources/level_select_background.png");
 	menu_title = IMG_Load("resources/jack_title.png");
 	background_tex = SDL_CreateTextureFromSurface(renderer, background);
 	menu_title_tex = SDL_CreateTextureFromSurface(renderer, menu_title);
-	title_rect = { 30,30,710,160 };
+	title_rect = { 40,30,710,160 };
 }
 
 void Level_select_menu_scene::draw_scene()
