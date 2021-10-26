@@ -1,7 +1,7 @@
 #pragma once
 #include "scene.hpp"
 #include "button.hpp"
-#include "../SDL2_image/include/SDL_image.h"
+#include "SDL_image.h"
 #include "SDL.h"
 #include <vector>
 #include <string>

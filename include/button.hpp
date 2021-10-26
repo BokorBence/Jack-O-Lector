@@ -1,7 +1,7 @@
 #pragma once
-#include "../SDL2/include/SDL.h"
+#include "SDL.h"
 #include <string>
-#include "../SDL2/include/SDL_surface.h"
+
 
 class Button
 {   

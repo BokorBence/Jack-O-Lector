@@ -5,8 +5,8 @@ Main_menu_scene::Main_menu_scene(SDL_Renderer* r, int* qf, Scene* next_scene)
 {
 	quitflag = qf;
 	renderer = r;
-	level_select = new Button(0, 0, 0, 0, 230, 345, 355, 80, "resources/level_select", r);
-	quit = new Button(0, 0, 0, 0, 230, 445, 355, 80, "resources/quit", r);
+	level_select = new Button(0, 0, 0, 0, 230, 345, 355, 80, "resources/level_select.png", r);
+	quit = new Button(0, 0, 0, 0, 230, 445, 355, 80, "resources/quit.png", r);
 	title = "resources/jack_title.png";
 	background_path = "resources/main_menu_background.png";
 	background = IMG_Load("resources/main_menu_background.png");

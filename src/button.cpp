@@ -1,12 +1,12 @@
 #include "../include/button.hpp"
-#include "../SDL2_image/include/SDL_image.h"
+#include "SDL_image.h"
 
 Button::Button(int r, int g, int b, int a, int x, int y, int width, int height, std::string filename, SDL_Renderer* renderer)
 {
 	colour = { r, g, b, a };
 	draw_rect = { x,y,width,height };
     pressed = false;
-    surface = IMG_Load((filename + ".png").c_str());
+    surface = IMG_Load((filename).c_str());
     button_tex = SDL_CreateTextureFromSurface(renderer, surface);
     this->renderer = renderer;
 }

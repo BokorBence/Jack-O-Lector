@@ -4,11 +4,11 @@ Level_select_menu_scene::Level_select_menu_scene(SDL_Renderer* r, Scene* next_sc
 {
 	next = next_scene;
 	renderer = r;
-	level1 = new Button(0, 0, 0, 0, 150, 300, 75, 80, "resources/level_1", r);
-	level2 = new Button(0, 0, 0, 0, 370, 300, 75, 80, "resources/level_2", r);
-	level3 = new Button(0, 0, 0, 0, 575, 300, 75, 80, "resources/level_3", r);
+	level1 = new Button(0, 0, 0, 0, 150, 300, 75, 80, "resources/level_1.png", r);
+	level2 = new Button(0, 0, 0, 0, 370, 300, 75, 80, "resources/level_2.png", r);
+	level3 = new Button(0, 0, 0, 0, 575, 300, 75, 80, "resources/level_3.png", r);
 
-	back = new Button(0, 0, 0, 0, 50, 470, 355, 80, "resources/quit", r);
+	back = new Button(0, 0, 0, 0, 50, 470, 355, 80, "resources/quit.png", r);
 	title = "resources/jack_title.png";
 	background_path = "resources/main_menu_background.png";
 	background = IMG_Load("resources/level_select_background.png");

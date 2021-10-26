@@ -1,6 +1,6 @@
 #include "SDL.h" 
 #include <iostream>
-#include "SDL2_image/include/SDL_image.h"
+#include "SDL_image.h"
 #include "include/button.hpp"
 #include "include/main_menu_scene.hpp"
 #include "include/level_select_menu_scene.hpp"
