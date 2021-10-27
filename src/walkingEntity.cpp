@@ -1,6 +1,6 @@
-#include "../../include/walkingentity.hpp"
-#include "../../include/entity.hpp"
-#include "../../include/game.hpp"
+#include "../include/walkingentity.hpp"
+#include "../include/entity.hpp"
+#include "../include/game.hpp"
 #include <iostream>
 
 

@@ -1,5 +1,5 @@
 #pragma once
-#include "../../include/entity.hpp"
+#include "../include/entity.hpp"
 
 
 class walkingEntity : public Entity{
