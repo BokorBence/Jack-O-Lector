@@ -21,5 +21,5 @@ public:
 	void printGameBoard();
 	void simulate(bool gameRunning, walkingEntity walker, Guard* guards, int num_of_guards);
 	void step(walkingEntity* walker, Guard* guards, int num_of_guards);
-
+	void gameloop(bool gamerunning);
 };
