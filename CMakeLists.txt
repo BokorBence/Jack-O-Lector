@@ -16,6 +16,10 @@ add_executable(JackOLector
 	src/level_select_menu_scene.cpp
 )
 
+enable_testing()
+add_subdirectory(tests)
+
+
 target_link_libraries(JackOLector ${SDL2_LIBRARIES} ${SDL2_IMAGE_LIBRARIES})
 target_include_directories(JackOLector PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/include)
 
