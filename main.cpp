@@ -2,6 +2,9 @@
 #include <iostream>
 #include "SDL_image.h"
 #include "include/button.hpp"
+#include "include/game.hpp"
+#include "include/WalkingEntity.hpp"
+#include "include/guard.hpp"
 #include "include/main_menu_scene.hpp"
 #include "include/level_select_menu_scene.hpp"
 #include <stack>
@@ -12,6 +15,7 @@ int main(int argc, char* argv[]) {
     SDL_Init(SDL_INIT_VIDEO);
     SDL_Window* window = NULL;
     window = SDL_CreateWindow("Jack O'Lector", 350, 150, 800, 600, SDL_WINDOW_SHOWN);
+
     if (window == NULL) {
         fprintf(stderr, "create window failed: %s\n", SDL_GetError());
         return 1;   // 'error' return status is !0. 1 is good enough
@@ -35,7 +39,10 @@ int main(int argc, char* argv[]) {
     Main_menu_scene main_menu(renderer, &quit, NULL);
     Level_select_menu_scene level_select_menu(renderer, &main_menu);
 
-
+    Game g = Game(10, 10);
+    walkingEntity w = walkingEntity(0,0,0);
+    Guard gu = Guard(1,1,1,true,5);
+    g.simulate(true,w,&gu,1);
 
     scenes.push(&level_select_menu);
     scenes.push(&main_menu);

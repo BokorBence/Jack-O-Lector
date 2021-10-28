@@ -1,5 +1,6 @@
 #include "../include/game.hpp"
 #include <chrono>
+#include <conio.h>
 #include <cstdint>
 using namespace std;
 using namespace chrono;
@@ -38,10 +39,10 @@ void Game::step(walkingEntity *walker, Guard* guards, int num_of_guards) {
 	}
 	int tmp_x = walker->get_x();
 	int tmp_y = walker->get_y();
-	if (GetAsyncKeyState(VK_UP)) walker->moveUp();
-	if (GetAsyncKeyState(VK_DOWN)) walker->moveDown();
-	if (GetAsyncKeyState(VK_RIGHT)) walker->moveRight();
-	if (GetAsyncKeyState(VK_LEFT)) walker->moveLeft();
+	if (getch() == 72) walker->moveUp();
+	if (getch() == 80) walker->moveDown();
+	if (getch() == 77) walker->moveRight();
+	if (getch() == 75) walker->moveLeft();
 	if (walker->get_d() == 0 || walker->get_d() == 2)
 		gameBoard[walker->get_x()][walker->get_y()] = '^';
 	else
