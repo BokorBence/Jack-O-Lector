@@ -2,7 +2,6 @@
 #include "walkingEntity.hpp"
 #include "guard.hpp"
 #include <iostream>
-#include <windows.h>
 #include "SDL_timer.h"
 
 
