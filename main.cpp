@@ -39,10 +39,6 @@ int main(int argc, char* argv[]) {
     Main_menu_scene main_menu(renderer, &quit, NULL);
     Level_select_menu_scene level_select_menu(renderer, &main_menu);
 
-    Game g = Game(10, 10);
-    walkingEntity w = walkingEntity(0,0,0);
-    Guard gu = Guard(1,1,1,true,5);
-    g.simulate(true,w,&gu,1);
 
     scenes.push(&level_select_menu);
     scenes.push(&main_menu);

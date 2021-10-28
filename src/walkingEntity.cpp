@@ -1,4 +1,4 @@
-#include "../include/walkingentity.hpp"
+#include "../include/walkingEntity.hpp"
 #include "../include/entity.hpp"
 #include "../include/game.hpp"
 #include <iostream>
