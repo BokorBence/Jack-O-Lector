@@ -3,7 +3,7 @@
 #include "SDL_image.h"
 #include "include/button.hpp"
 #include "include/game.hpp"
-#include "include/WalkingEntity.hpp"
+#include "include/walkingEntity.hpp"
 #include "include/guard.hpp"
 #include "include/main_menu_scene.hpp"
 #include "include/level_select_menu_scene.hpp"
