@@ -1,7 +1,17 @@
 #include "../include/guard.hpp"
 
 Guard::Guard()
-{}
+{
+	x = 0;
+	y = 0;
+	d = 0;
+	is_searching = false;
+	start_x = x;
+	start_y = y;
+	stop_x = x;
+	stop_y = y;
+	horizontal = false;
+}
 
 Guard::Guard(int _x, int _y, int _d, bool _horizontal, int steps)
 {
@@ -39,7 +49,7 @@ void Guard::Move()
 			if (x != stop_x)
 			{
 				moveRight();
-				if (x = stop_x)
+				if (x == stop_x)
 				{
 					is_searching = true;
 				}
@@ -47,7 +57,7 @@ void Guard::Move()
 			else if (x != start_x)
 			{
 				moveLeft();
-				if (x = start_x)
+				if (x == start_x)
 				{
 					is_searching = true;
 				}
@@ -58,7 +68,7 @@ void Guard::Move()
 			if (y != stop_y)
 			{
 				moveDown();
-				if (y = stop_y)
+				if (y == stop_y)
 				{
 					is_searching = true;
 				}
@@ -66,7 +76,7 @@ void Guard::Move()
 			else if (y != start_y)
 			{
 				moveUp();
-				if (y = start_y)
+				if (y == start_y)
 				{
 					is_searching = true;
 				}

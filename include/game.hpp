@@ -2,7 +2,7 @@
 #include "walkingEntity.hpp"
 #include "guard.hpp"
 #include <iostream>
-#include "SDL_timer.h"
+//#include "SDL_timer.h"
 
 
 class Game {
@@ -11,7 +11,7 @@ private:
 	int width;
 	int height;
 	char gameBoard[600][800];
-	SDL_TimerID timer_id;
+	//SDL_TimerID timer_id;
 
 public:
 	Game(int _w, int _h);

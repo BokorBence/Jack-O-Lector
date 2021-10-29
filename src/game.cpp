@@ -8,7 +8,7 @@ using namespace chrono;
 Game::Game(int _w, int _h) {
 	width = _w;
 	height = _h;
-	
+
 	std::cout << "Width: " << width << std::endl;
 	std::cout << "Height: " << height << std::endl;
 	
