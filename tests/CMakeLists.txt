@@ -2,7 +2,7 @@ add_executable( game_test
 	game_test.cpp
 	../src/guard.cpp
 	../src/entity.cpp
-	../src/walkingentity.cpp
+	../src/walkingEntity.cpp
 	../src/game.cpp
 )
 
