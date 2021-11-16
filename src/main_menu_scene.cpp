@@ -1,6 +1,13 @@
 #include "../include/main_menu_scene.hpp"
 
 
+/**
+ * @brief Construct a new Main_menu_scene::Main_menu_scene object
+ * 
+ * @param r the renderer pointer
+ * @param qf the quit flag. This interrupts the game loop if it's set to true 
+ * @param next_scene 
+ */
 Main_menu_scene::Main_menu_scene(SDL_Renderer* r, int* qf, Scene* next_scene)
 {
 	quitflag = qf;
@@ -18,6 +25,10 @@ Main_menu_scene::Main_menu_scene(SDL_Renderer* r, int* qf, Scene* next_scene)
 
 }
 
+/**
+ * @brief This function draws the scene
+ * 
+ */
 void Main_menu_scene::draw_scene()
 {
 	
@@ -28,6 +39,11 @@ void Main_menu_scene::draw_scene()
 	SDL_RenderCopy(renderer, menu_title_tex, NULL, &title_rect);
 }
 
+/**
+ * @brief This function handles the main menu's events. On pressing quit it sets the quitflag to true. On pressing level select it sets the needs_to_be_popped to true indicating to the game loop that it can be popped from the scene stack
+ * 
+ * @param ev The event parameter.
+ */
 void Main_menu_scene::handle_events(const SDL_Event &ev)
 {
 	level_select->button_proccess_event(ev);
