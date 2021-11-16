@@ -1,13 +1,9 @@
 #include "../include/game.hpp"
-#include <chrono>
-#include <cstdint>
-using namespace std;
-using namespace chrono;
 
 
-Game::Game(int _w, int _h) {
-	width = _w;
-	height = _h;
+
+
+Game::Game() {
 
 	std::cout << "Width: " << width << std::endl;
 	std::cout << "Height: " << height << std::endl;
@@ -63,18 +59,18 @@ void Game::simulate(bool gameRunning, walkingEntity walker, Guard* guards, int n
 	
 void Game::gameloop(bool game_running) {
 
-	using frame = duration<int32_t, ratio<1, 60>>;
-	using ms = duration<float, milli>;
+	using frame = std::chrono::duration<int32_t, std::ratio<1, 60>>;
+	using ms = std::chrono::duration<float, std::milli>;
 
-	time_point<steady_clock> fpsTimer(steady_clock::now());
+	std::chrono::time_point<std::chrono::steady_clock> fpsTimer(std::chrono::steady_clock::now());
 	frame FPS{};
 
 	while (game_running) {
-		FPS = duration_cast<frame>(steady_clock::now() - fpsTimer);
+		FPS = std::chrono::duration_cast<frame>(std::chrono::steady_clock::now() - fpsTimer);
 		if (FPS.count() > 1)
 		{
-			fpsTimer = steady_clock::now();
-			cout << "LastFrame: " << duration_cast<ms>(FPS).count() << "ms  |  FPS: " << FPS.count() * 60 << endl;
+			fpsTimer = std::chrono::steady_clock::now();
+			std::cout << "LastFrame: " << std::chrono::duration_cast<ms>(FPS).count() << "ms  |  FPS: " << FPS.count() * 60 << std::endl;
 
 		}
 	}
