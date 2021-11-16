@@ -70,6 +70,11 @@ $(function() {
   <div class="headertitle"><div class="title">Scene Class Reference</div></div>
 </div><!--header-->
 <div class="contents">
+
+<p>This is the base class for the game scenes.  
+ <a href="class_scene.html#details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="scene_8hpp_source.html">scene.hpp</a>&gt;</code></p>
 <div class="dynheader">
 Inheritance diagram for Scene:</div>
 <div class="dyncontent">
@@ -92,9 +97,11 @@ Public Member Functions</h2></td></tr>
 Public Attributes</h2></td></tr>
 <tr class="memitem:a4fa6ee8d309ecfa77ec965559b2641c5"><td class="memItemLeft" align="right" valign="top"><a id="a4fa6ee8d309ecfa77ec965559b2641c5" name="a4fa6ee8d309ecfa77ec965559b2641c5"></a>
 bool&#160;</td><td class="memItemRight" valign="bottom"><b>needs_to_be_popped</b></td></tr>
+<tr class="memdesc:a4fa6ee8d309ecfa77ec965559b2641c5"><td class="mdescLeft">&#160;</td><td class="mdescRight">This indicates to the game loop that the scene needs to be popped from the stack. <br /></td></tr>
 <tr class="separator:a4fa6ee8d309ecfa77ec965559b2641c5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a715e431660b02a7e1f80d16443588a53"><td class="memItemLeft" align="right" valign="top"><a id="a715e431660b02a7e1f80d16443588a53" name="a715e431660b02a7e1f80d16443588a53"></a>
 <a class="el" href="class_scene.html">Scene</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>push_over_me</b></td></tr>
+<tr class="memdesc:a715e431660b02a7e1f80d16443588a53"><td class="mdescLeft">&#160;</td><td class="mdescRight">if it's not null, this scene will be pushed over the current scene <br /></td></tr>
 <tr class="separator:a715e431660b02a7e1f80d16443588a53"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-attribs" name="pro-attribs"></a>
@@ -103,7 +110,9 @@ Protected Attributes</h2></td></tr>
 SDL_Renderer *&#160;</td><td class="memItemRight" valign="bottom"><b>renderer</b></td></tr>
 <tr class="separator:a04ae8110c42e47e8e7892e89dc34328e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Member Function Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p >This is the base class for the game scenes. </p>
+</div><h2 class="groupheader">Member Function Documentation</h2>
 <a id="a35725c174ea558660e6d1504a4de8ad4" name="a35725c174ea558660e6d1504a4de8ad4"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a35725c174ea558660e6d1504a4de8ad4">&#9670;&nbsp;</a></span>draw_scene()</h2>
 
