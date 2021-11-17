@@ -10,12 +10,11 @@
 class Level_1 {
 
 private:
-	Tile _tile_matrix[50][37];
+	Tile _tile_matrix[50][38];
 	walkingEntity* jack;// = walkingEntity(1, 1, 2);
 	static const int num_of_guards = 3;
 	Guard* guards[num_of_guards];
 	bool _objective;
-	Game _game;
 
 public:
 	bool get_objective() { return _objective; }

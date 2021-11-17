@@ -21,6 +21,7 @@ add_executable(JackOLector
 	src/wall.cpp
 	src/tile.cpp
 	src/level_1.cpp
+	src/objective.cpp
 )
 
 enable_testing()
