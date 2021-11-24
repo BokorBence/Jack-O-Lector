@@ -1,5 +1,6 @@
 #include <iostream>
 #include "../include/guard.hpp"
+#include "../include/level_1.hpp"
 // uncomment to disable assert()
 // #define NDEBUG
 #include <cassert>
@@ -7,6 +8,8 @@
 // Use (void) to silent unused warnings.
 #define assertm(exp, msg) assert(((void)msg, exp))
  
+bool Level1_create();
+
 int main()
 {
     assert(2+2==4); //initial test
@@ -70,4 +73,21 @@ int main()
     assert(agent_k.get_x() == 3);
     agent_k.set_y(3);
     assert(agent_k.get_y() == 3);
+
+    //bool kamehameha = Level1_create();
+}
+
+bool Level1_create()
+{
+    /*Level_1 creating*/
+    bool passed = true;
+    Level_1 level = Level_1("levels/level1.txt");
+  //  passed = passed && (level.get_objective() == false);
+  //  passed = passed && (level._tile_matrix[0][0]->get_path() == "wall");
+  //  passed = passed && (level._tile_matrix[1][1]->get_path() == "background");
+  //  passed = passed && (level._tile_matrix[33][44]->get_path() == "objective");
+  //  passed = passed && (level._tile_matrix[2][9]->get_path() == "grave");
+  //  passed = passed && (level._tile_matrix[2][13]->get_path() == "tree/bush");
+    return passed;
+
 }

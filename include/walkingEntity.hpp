@@ -16,5 +16,6 @@ public:
 	int moveRight();
 	void turnClockwise();
 	void turnAntiClockwise();
+	~walkingEntity() {}
 
 };

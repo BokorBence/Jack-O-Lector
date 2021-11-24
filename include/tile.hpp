@@ -9,6 +9,7 @@ private:
 public:
 	Tile() { _path = ""; }
 	Tile(std::string path_) { _path = path_; }
-	std::string get_path() { return _path; }
+	std::string get_path() const { return _path; } 
 	void set_path(std::string path_) { _path = path_; }
+	~Tile() { }
 };
