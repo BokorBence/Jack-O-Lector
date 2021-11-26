@@ -1,9 +1,10 @@
 #include "../include/level_select_menu_scene.hpp"
 
-Level_select_menu_scene::Level_select_menu_scene(SDL_Renderer* r, Scene* next_scene)
+Level_select_menu_scene::Level_select_menu_scene(SDL_Renderer* r, Scene* next_scene, Game_scene* game_scene)
 {
 	next = next_scene;
 	renderer = r;
+	g_scene = game_scene;
 	level1 = new Button(0, 0, 0, 0, 150, 300, 75, 80, "resources/level_1.png", r);
 	level2 = new Button(0, 0, 0, 0, 370, 300, 75, 80, "resources/level_2.png", r);
 	level3 = new Button(0, 0, 0, 0, 575, 300, 75, 80, "resources/level_3.png", r);
@@ -46,14 +47,17 @@ void Level_select_menu_scene::handle_events(const SDL_Event& ev)
 
 	if (level1->pressed)
 	{
+		g_scene->init_level(1);
 		needs_to_be_popped = true;
 	}
 	if (level2->pressed)
 	{
+		g_scene->init_level(2);
 		needs_to_be_popped = true;
 	}
 	if (level3->pressed)
 	{
+		g_scene->init_level(3);
 		needs_to_be_popped = true;
 	}
 	level1->pressed = false;
