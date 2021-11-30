@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['walkingentity_0',['walkingEntity',['../classwalking_entity.html',1,'']]]
+  ['scene_0',['Scene',['../class_scene.html',1,'']]]
 ];
