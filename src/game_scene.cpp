@@ -7,6 +7,8 @@ Game_scene::Game_scene(SDL_Renderer* r, Scene* next_scene)
 	
 	g_logic = new Game();
 	level = NULL;
+	jack_sur = IMG_Load("resources/jack_stand.png");
+	jack_tex = SDL_CreateTextureFromSurface(renderer, jack_sur);
 }
 
 
@@ -41,6 +43,8 @@ void Game_scene::init_level(int level_number)
 
 void Game_scene::draw_scene()
 {
+	jack_rect = { 10,10, w, h };
+	SDL_RenderCopy(renderer, jack_tex, NULL, &jack_rect);
 	
 }
 
