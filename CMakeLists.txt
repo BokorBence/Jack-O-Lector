@@ -18,6 +18,11 @@ add_executable(JackOLector
 	src/entity.cpp
 	src/walkingEntity.cpp
 	src/guard.cpp
+	src/wall.cpp
+	src/tile.cpp
+	src/level_1.cpp
+	src/objective.cpp
+	src/game_scene.cpp
 )
 
 enable_testing()

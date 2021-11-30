@@ -1,5 +1,6 @@
 #pragma once
 #include "scene.hpp"
+#include "game_scene.hpp"
 #include "button.hpp"
 #include "SDL_image.h"
 
@@ -17,9 +18,10 @@ public:
 	SDL_Texture* menu_title_tex;
 	SDL_Rect title_rect;
 	std::string background_path;
-	Level_select_menu_scene(SDL_Renderer*, Scene*);
+	Level_select_menu_scene(SDL_Renderer*, Scene*, Game_scene*);
 	void draw_scene() override;
 	void handle_events(const SDL_Event &) override;
 private:
 	Scene* next;
+	Game_scene* g_scene;
 };

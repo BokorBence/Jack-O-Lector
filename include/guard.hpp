@@ -19,5 +19,6 @@ public:
 	void Search();
 	int get_search_time() { return search_time; }
 	void Move();
+	~Guard() {}
 
 };

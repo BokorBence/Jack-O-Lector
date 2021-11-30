@@ -7,6 +7,7 @@
 #include "include/guard.hpp"
 #include "include/main_menu_scene.hpp"
 #include "include/level_select_menu_scene.hpp"
+#include "include/game_scene.hpp"
 #include <stack>
 
 int main(int argc, char* argv[]) {
@@ -37,9 +38,10 @@ int main(int argc, char* argv[]) {
   
 
     Main_menu_scene main_menu(renderer, &quit, NULL);
-    Level_select_menu_scene level_select_menu(renderer, &main_menu);
+    Game_scene game(renderer, NULL);
+    Level_select_menu_scene level_select_menu(renderer, &main_menu, &game);
 
-
+    scenes.push(&game);
     scenes.push(&level_select_menu);
     scenes.push(&main_menu);
 
@@ -80,14 +82,10 @@ int main(int argc, char* argv[]) {
         }
 
         
-           //SDL_RenderCopy(renderer, txt, NULL, &rct);
-
         
         scenes.top()->draw_scene();
 
-       
-        //std::cout << SDL_GetPerformanceFrequency() << std::endl;
-        
+           
 
         frameTime = SDL_GetTicks() - frameStart;
 
@@ -97,8 +95,6 @@ int main(int argc, char* argv[]) {
 
        
          SDL_RenderPresent(renderer);
-
-      // SDL_UpdateWindowSurface(window);
     }
     SDL_DestroyWindow(window);
     SDL_DestroyRenderer(renderer);

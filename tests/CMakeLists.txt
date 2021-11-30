@@ -4,6 +4,7 @@ add_executable( game_test
 	../src/entity.cpp
 	../src/walkingEntity.cpp
 	../src/game.cpp
+	../src/level_1.cpp
 )
 
 add_test(NAME Game_logic_test COMMAND $<TARGET_FILE:game_test>)
