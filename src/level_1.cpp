@@ -3,54 +3,72 @@
 Level_1::Level_1(std::string path)
 {
 
-	std::ifstream read_file;
+	std::fstream read_file;
 	read_file.open(path);
 
-if (read_file.is_open()) {
-		int data;
+	if (read_file.is_open())
+	{
 		int i = 0;
 		int j = 0;
-		while (read_file) {
-			data = read_file.get();
-			if (data == ' ') {
-				j++;
-			}
-			else if (data == '\n')
+		for (std::string data; std::getline(read_file, data, ' '); )
+		{
+			std::cout << data;
+			int value = std::stoi(data);
+			switch (value)
 			{
-				j = 0;
-				i++;
+			case 100:
+				_tile_matrix[i][j] = new Tile("resources/prototile.png");
+				break;
+			case 101:
+				_tile_matrix[i][j] = new Tile("resources/grassup.png");
+				break;
+			case 102:
+				_tile_matrix[i][j] = new Tile("resources/grassdown.png");
+				break;
+			case 103:
+				_tile_matrix[i][j] = new Tile("resources/grassright.png");
+				break;
+			case 104:
+				_tile_matrix[i][j] = new Tile("resources/grassleft.png");
+				break;
+			case 105:
+				_tile_matrix[i][j] = new Tile("resources/prototile.png");
+				break;
+			case 106:
+				_tile_matrix[i][j] = new Tile("resources/grassup.png");
+				break;
+			case 107:
+				_tile_matrix[i][j] = new Tile("resources/grassdown.png");
+				break;
+			case 108:
+				_tile_matrix[i][j] = new Tile("resources/grassright.png");
+				break;
+			case 109:
+				_tile_matrix[i][j] = new Tile("resources/grassleft.png");
+				break;
+			case 110:
+				_tile_matrix[i][j] = new Tile("resources/prototile.png");
+				break;
+			case 111:
+				_tile_matrix[i][j] = new Tile("resources/grassup.png");
+				break;
+			case 112:
+				_tile_matrix[i][j] = new Tile("resources/grassdown.png");
+				break;
+			case 113:
+				_tile_matrix[i][j] = new Tile("resources/grassright.png");
+				break;
+			default:
+				break;
 			}
-			else {
-				int value = data - 48;
-				switch (value)
-				{
-				case 0:
-					_tile_matrix[i][j] = new Tile("background");
-					//std::cerr << "B" << std::endl;
-					break;
-				case 1:
-					_tile_matrix[i][j] = new Tile("wall");
-					//std::cerr << "W" << std::endl;
-					break;
-				case 2:
-					_tile_matrix[i][j] = new Tile("tree/bush");
-					//std::cerr << "F" << std::endl;
-					break;
-				case 3:
-					_tile_matrix[i][j] = new Tile("grave");
-					//std::cerr << "G" << std::endl;
-					break;
-				case 4:
-					_tile_matrix[i][j] = new Tile("objective");
-					//std::cerr << "O" << std::endl;
-					break;
-				default:
-					break;
-				}
+			j++;
+			if (j == 50) {
+				i++;
+				j = 0;
 			}
 		}
 	}
-	
+
 	read_file.close();
 
 	jack = new walkingEntity(3, 2, 0);

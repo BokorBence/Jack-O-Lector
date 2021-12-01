@@ -2,6 +2,8 @@
 
 #include <iostream>
 #include <fstream>
+#include <string>
+#include <sstream>
 #include "../include/guard.hpp"
 #include "../include/walkingEntity.hpp"
 #include "../include/entity.hpp"
