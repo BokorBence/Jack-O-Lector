@@ -15,7 +15,6 @@ public:
 private:
 	Scene* next;
     Game* g_logic;
-	Level_1* level;
 	SDL_Surface* jack_sur;
 	SDL_Texture* jack_tex;
 	SDL_Rect jack_rect;

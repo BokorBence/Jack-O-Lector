@@ -32,16 +32,16 @@ Level_1::Level_1(std::string path)
 				_tile_matrix[i][j] = new Tile("resources/grassleft.png", value);
 				break;
 			case 105:
-				_tile_matrix[i][j] = new Tile("resources/prototile.png", value);
+				_tile_matrix[i][j] = new Tile("resources/grassupright.png", value);
 				break;
 			case 106:
-				_tile_matrix[i][j] = new Tile("resources/grassup.png", value);
+				_tile_matrix[i][j] = new Tile("resources/grassdownleft.png", value);
 				break;
 			case 107:
-				_tile_matrix[i][j] = new Tile("resources/grassdown.png", value);
+				_tile_matrix[i][j] = new Tile("resources/grassupleft.png", value);
 				break;
 			case 108:
-				_tile_matrix[i][j] = new Tile("resources/grassright.png", value);
+				_tile_matrix[i][j] = new Tile("resources/grassdownright.png", value);
 				break;
 			case 109:
 				_tile_matrix[i][j] = new Tile("resources/grassleft.png", value);

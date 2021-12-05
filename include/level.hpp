@@ -1,24 +1,19 @@
 #pragma once
-
 #include <iostream>
 #include <fstream>
 #include <string>
 #include <sstream>
-#include "../include/level.hpp"
 #include "../include/guard.hpp"
 #include "../include/walkingEntity.hpp"
 #include "../include/entity.hpp"
 #include "../include/tile.hpp"
 
-class Level_1 : public Level {
-
-private:
-	static const int num_of_guards = 3;
-	Guard* guards[num_of_guards];
-
+class Level {
+protected:
+	walkingEntity* jack;
+	bool _objective;
 public:
-	Level_1(std::string path);
-	Tile* _tile_matrix[38][50];
-	~Level_1();
+	Level() { _objective = false; jack = NULL; };
+	bool get_objective() const { return _objective; }
 
 };

@@ -23,6 +23,7 @@ add_executable(JackOLector
 	src/level_1.cpp
 	src/objective.cpp
 	src/game_scene.cpp
+	src/level.cpp
 )
 
 enable_testing()
