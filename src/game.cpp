@@ -1,12 +1,28 @@
 #include "../include/game.hpp"
+#include "../include/level_1.hpp"
 
 
 
 
-Game::Game() {
+Game::Game(int _lvl) {
 
 	std::cout << "Width: " << width << std::endl;
 	std::cout << "Height: " << height << std::endl;
+
+	switch (_lvl)
+	{
+	case 1:
+		_level = new Level_1("levels/level1.txt");
+		break;
+	case 2:
+		_level = new Level_1("levels/level1.txt");
+		break;
+	case 3:
+		_level = new Level_1("levels/level1.txt");
+		break;
+	default:
+		break;
+	}
 	
 	for (int i = 0; i < height; i++) {
 		for (int j = 0; j < width; j++) {

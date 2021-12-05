@@ -4,19 +4,21 @@
 #include <iostream>
 #include <chrono>
 #include <cstdint>
+#include "level.hpp"
 //#include "SDL_timer.h"
 
 
 class Game {
 
 private:
+	Level *_level;
 	int width = 600;
 	int height = 800;
 	char gameBoard[600][800];
 	//SDL_TimerID timer_id;
 	//TODO: make walkers, guards, and ghosts as a datamember
 public:
-	Game();
+	Game(int _lvl);
 	int get_width() { return width; }
 	int get_height() { return height; }
 	void printGameBoard();
