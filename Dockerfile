@@ -1,4 +1,4 @@
-FROM alpine:3.6
+FROM ubuntu
 
 RUN apt-get update
 RUN apt-get install -y \
