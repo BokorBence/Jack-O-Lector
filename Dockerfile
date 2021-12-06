@@ -12,3 +12,11 @@ RUN apt-get install -y \
     libsdl2-dev \
     libsdl2-image-dev \
     cmake
+
+COPY ./ ./
+
+RUN cmake -B ./build -DCMAKE_BUILD_TYPE=Release
+RUN cmake --build ./build --config Release
+RUN make install
+
+ENTRYPOINT [ "JackOLector" ]
