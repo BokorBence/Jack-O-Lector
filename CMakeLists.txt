@@ -2,6 +2,7 @@ cmake_minimum_required(VERSION 3.7)
 
 project(JackOLector)
 
+
 set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_SOURCE_DIR}/cmake/")
 find_package(SDL2 REQUIRED)
 find_package(SDL2_image REQUIRED)
@@ -32,3 +33,5 @@ add_subdirectory(tests)
 target_link_libraries(JackOLector ${SDL2_LIBRARIES} ${SDL2_IMAGE_LIBRARIES})
 target_include_directories(JackOLector PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/include)
 
+
+install(TARGETS JackOLector DESTINATION bin)
