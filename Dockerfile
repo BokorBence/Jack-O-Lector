@@ -16,7 +16,6 @@ RUN apt-get install -y \
 COPY ./ ./
 
 RUN cmake -B ./build -DCMAKE_BUILD_TYPE=Release
-RUN cmake --build ./build --config Release
-RUN make install
+RUN cmake --build ./build --target install
 
 ENTRYPOINT [ "JackOLector" ]
