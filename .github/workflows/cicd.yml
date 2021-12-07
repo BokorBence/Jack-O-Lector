@@ -1,4 +1,4 @@
-name: CMake
+name: CI/CD
 
 on:
   push:
@@ -62,22 +62,22 @@ jobs:
         path: release
 
     - name: Install Butler
-        run: |
-          curl -L -o butler.zip https://broth.itch.ovh/butler/linux-amd64/LATEST/archive/default
-          unzip butler.zip
-          chmod +x butler
-          ./butler -V
+      run: |
+        curl -L -o butler.zip https://broth.itch.ovh/butler/linux-amd64/LATEST/archive/default
+        unzip butler.zip
+        chmod +x butler
+        ./butler -V
 
     - name: Create release zip and run Butler
 
-        env:
-          BUTLER_API_KEY: ${{ secrets.BUTLER_API_KEY }}
-        run: |
-          cd release
-          zip -r ../release.zip *
-          cd ..
+      env:
+        BUTLER_API_KEY: ${{ secrets.BUTLER_API_KEY }}
+      run: |
+        cd release
+        zip -r ../release.zip *
+        cd ..
 
-          ./butler login
-          ./butler push release.zip object71/pong:html5
-          ./butler logout
+        ./butler login
+        ./butler push release.zip object71/pong:html5
+        ./butler logout
       
