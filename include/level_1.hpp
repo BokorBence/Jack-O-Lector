@@ -18,7 +18,7 @@ private:
 
 public:
 	Level_1(std::string path);
-	Tile* _tile_matrix[38][50];
+	Level_1(Level l, std::string path);
 	~Level_1();
 
 };

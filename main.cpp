@@ -41,16 +41,12 @@ int main(int argc, char* argv[]) {
     Game_scene game(renderer, NULL);
     Level_select_menu_scene level_select_menu(renderer, &main_menu, &game);
 
-    Level_1 _lvl = Level_1("levels/level1.txt");
-
-
     scenes.push(&game);
     scenes.push(&level_select_menu);
     scenes.push(&main_menu);
 
     Uint32 frameTime, frameStart;
     const Uint32 frameDelay = 17;
-
     SDL_Event evt;
 
     while (!quit)
