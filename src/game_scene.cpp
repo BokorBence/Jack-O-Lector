@@ -17,8 +17,13 @@ Game_scene::Game_scene(SDL_Renderer* r, Scene* next_scene)
 	surfs[6] = IMG_Load("resources/grassdownleft.png");
 	surfs[7] = IMG_Load("resources/grassupleft.png");
 	surfs[8] = IMG_Load("resources/grassdownright.png");
-
-	for (int i = 0; i < 9; ++i) {
+	surfs[9] = IMG_Load("resources/grassrightup.png");
+	surfs[10] = IMG_Load("resources/grassleftdown.png");
+	surfs[11] = IMG_Load("resources/grassleftup.png");
+	surfs[12] = IMG_Load("resources/grassrightdown.png");
+	surfs[13] = IMG_Load("resources/grass.png");
+	int k = sizeof(surfs) / sizeof(surfs[0]);
+	for (int i = 0; i < k; ++i) {
 		texts[i] = SDL_CreateTextureFromSurface(renderer, surfs[i]);
 	}
 }
@@ -55,7 +60,7 @@ void Game_scene::draw_scene()
 	SDL_RenderCopy(renderer, jack_tex, NULL, &jack_rect);
 	for (int i = 0; i < 38; ++i) {
 		for (int j = 0; j < 50; ++j) {
-			rectest = {i*16,j*16,16,16};
+			rectest = {j*16,i*16,16,16};
 			switch (g_logic->_level->_tile_matrix[i][j]->get_type()) {
 				case 100:
 					SDL_RenderCopy(renderer, texts[0], NULL, &rectest);
@@ -85,19 +90,19 @@ void Game_scene::draw_scene()
 					SDL_RenderCopy(renderer, texts[8], NULL, &rectest);
 					break;
 				case 109:
-					SDL_RenderCopy(renderer, texts[0], NULL, &rectest);
+					SDL_RenderCopy(renderer, texts[9], NULL, &rectest);
 					break;
 				case 110:
-					SDL_RenderCopy(renderer, texts[0], NULL, &rectest);
+					SDL_RenderCopy(renderer, texts[10], NULL, &rectest);
 					break;
 				case 111:
-					SDL_RenderCopy(renderer, texts[0], NULL, &rectest);
+					SDL_RenderCopy(renderer, texts[11], NULL, &rectest);
 					break;
 				case 112:
-					SDL_RenderCopy(renderer, texts[0], NULL, &rectest);
+					SDL_RenderCopy(renderer, texts[12], NULL, &rectest);
 					break;
 				case 113:
-					SDL_RenderCopy(renderer, texts[0], NULL, &rectest);
+					SDL_RenderCopy(renderer, texts[13], NULL, &rectest);
 					break;
 				default:
 					break;

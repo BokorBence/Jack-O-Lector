@@ -15,7 +15,7 @@ int main(int argc, char* argv[]) {
     std::stack<Scene*> scenes;
     SDL_Init(SDL_INIT_VIDEO);
     SDL_Window* window = NULL;
-    window = SDL_CreateWindow("Jack O'Lector", 350, 150, 800, 600, SDL_WINDOW_SHOWN);
+    window = SDL_CreateWindow("Jack O'Lector", 350, 150, 800, 608, SDL_WINDOW_SHOWN);
 
     if (window == NULL) {
         fprintf(stderr, "create window failed: %s\n", SDL_GetError());
