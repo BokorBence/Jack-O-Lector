@@ -51,8 +51,8 @@ jobs:
     - name: Create Artifact
       run: |
         mkdir release
-        cp build/Main.html release/index.html
-        cp build/Main.js release/Main.js
+        cp ${{github.workspace}}/build/Main.html release/index.html
+        cp ./Main.js release/Main.js
         cp build/Main.wasm release/Main.wasm
     
     - name: Publish Artifact
