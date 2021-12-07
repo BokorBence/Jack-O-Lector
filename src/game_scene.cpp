@@ -22,6 +22,7 @@ Game_scene::Game_scene(SDL_Renderer* r, Scene* next_scene)
 	surfs[11] = IMG_Load("resources/grassleftup.png");
 	surfs[12] = IMG_Load("resources/grassrightdown.png");
 	surfs[13] = IMG_Load("resources/grass.png");
+	surfs[14] = IMG_Load("resources/grave.png");
 	int k = sizeof(surfs) / sizeof(surfs[0]);
 	for (int i = 0; i < k; ++i) {
 		texts[i] = SDL_CreateTextureFromSurface(renderer, surfs[i]);
@@ -103,6 +104,9 @@ void Game_scene::draw_scene()
 					break;
 				case 113:
 					SDL_RenderCopy(renderer, texts[13], NULL, &rectest);
+					break;
+				case 300:
+					SDL_RenderCopy(renderer, texts[14], NULL, &rectest);
 					break;
 				default:
 					break;
