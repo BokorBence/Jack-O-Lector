@@ -23,6 +23,13 @@ Game_scene::Game_scene(SDL_Renderer* r, Scene* next_scene)
 	surfs[12] = IMG_Load("resources/grassrightdown.png");
 	surfs[13] = IMG_Load("resources/grass.png");
 	surfs[14] = IMG_Load("resources/grave.png");
+	surfs[15] = IMG_Load("resources/grave2.png");
+	surfs[16] = IMG_Load("resources/grave3.png");
+	surfs[17] = IMG_Load("resources/pinedown.png");
+	surfs[18] = IMG_Load("resources/pinemid.png");
+	surfs[19] = IMG_Load("resources/pineup.png");
+	surfs[20] = IMG_Load("resources/bush.png");
+	surfs[21] = IMG_Load("resources/objective.png");
 	int k = sizeof(surfs) / sizeof(surfs[0]);
 	for (int i = 0; i < k; ++i) {
 		texts[i] = SDL_CreateTextureFromSurface(renderer, surfs[i]);
@@ -107,6 +114,27 @@ void Game_scene::draw_scene()
 					break;
 				case 300:
 					SDL_RenderCopy(renderer, texts[14], NULL, &rectest);
+					break;
+				case 301:
+					SDL_RenderCopy(renderer, texts[15], NULL, &rectest);
+					break;
+				case 302:
+					SDL_RenderCopy(renderer, texts[16], NULL, &rectest);
+					break;
+				case 400:
+					SDL_RenderCopy(renderer, texts[17], NULL, &rectest);
+					break;
+				case 401:
+					SDL_RenderCopy(renderer, texts[18], NULL, &rectest);
+					break;
+				case 402:
+					SDL_RenderCopy(renderer, texts[19], NULL, &rectest);
+					break;
+				case 403:
+					SDL_RenderCopy(renderer, texts[20], NULL, &rectest);
+					break;
+				case 500:
+					SDL_RenderCopy(renderer, texts[21], NULL, &rectest);
 					break;
 				default:
 					break;
