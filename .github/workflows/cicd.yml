@@ -9,6 +9,8 @@ on:
 env:
   # Customize the CMake build type here (Release, Debug, RelWithDebInfo, etc.)
   BUILD_TYPE: Release
+  ITCH_USER_NAME: jackolector
+  ITCH_GAME_NAME: jack-o-lector
 
 jobs:
   build:
@@ -20,6 +22,10 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
+    - name: Get version from tag
+      run: |
+        TAGVERSION=$(git describe --tags --abbrev=0)
+        echo "TAGVERSION=${TAGVERSION:1}" >> $GITHUB_ENV
 
     - name: Install dependencies
       run: |
@@ -48,39 +54,12 @@ jobs:
       # See https://cmake.org/cmake/help/latest/manual/ctest.1.html for more detail
       run: ctest -C ${{env.BUILD_TYPE}}
     
-    - name: Create Artifact
-      run: |
-        mkdir release
-        ls -l
-        ls build
-        ls release
-        cp ${{github.workspace}}/build/Main.html release/index.html
-        cp ./Main.js release/Main.js
-        cp build/Main.wasm release/Main.wasm
-    
-    - name: Publish Artifact
-      uses: actions/upload-artifact@v2
-      with:
-        name: web-release
-        path: release
-
-    - name: Install Butler
-      run: |
-        curl -L -o butler.zip https://broth.itch.ovh/butler/linux-amd64/LATEST/archive/default
-        unzip butler.zip
-        chmod +x butler
-        ./butler -V
-
-    - name: Create release zip and run Butler
-
+    - name: Create and Publish Artifact
+      uses: josephbmanley/butler-publish-itchio-action@master
       env:
-        BUTLER_API_KEY: ${{ secrets.BUTLER_API_KEY }}
-      run: |
-        cd release
-        zip -r ../release.zip *
-        cd ..
-
-        ./butler login
-        ./butler push release.zip object71/pong:html5
-        ./butler logout
-      
+        BUTLER_CREDENTIALS: ${{ secrets.BUTLER_API_KEY }}
+        CHANNEL: Linux
+        ITCH_GAME: ${{ env.ITCH_GAME_NAME }}
+        ITCH_USER: ${{ env.ITCH_USER_NAME }}
+        PACKAGE: ${{github.workspace}}/build
+        VERSION: ${{ env.TAGVERSION }}
