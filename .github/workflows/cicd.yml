@@ -22,10 +22,6 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
-    - name: Get version from tag
-      run: |
-        TAGVERSION=$(git describe --tags --abbrev=0)
-        echo "TAGVERSION=${TAGVERSION:1}" >> $GITHUB_ENV
 
     - name: Install dependencies
       run: |
@@ -62,4 +58,3 @@ jobs:
         ITCH_GAME: ${{ env.ITCH_GAME_NAME }}
         ITCH_USER: ${{ env.ITCH_USER_NAME }}
         PACKAGE: ${{github.workspace}}/build
-        VERSION: ${{ env.TAGVERSION }}
