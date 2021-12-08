@@ -52,6 +52,8 @@ jobs:
       run: |
         mkdir release
         ls -l
+        ls build
+        ls release
         cp ${{github.workspace}}/build/Main.html release/index.html
         cp ./Main.js release/Main.js
         cp build/Main.wasm release/Main.wasm
