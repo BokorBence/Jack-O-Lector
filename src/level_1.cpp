@@ -13,11 +13,43 @@ Level_1::Level_1(std::string path)
 		for (std::string data; std::getline(read_file, data, ' '); )
 		{
 			std::cout << data;
-			if (data == "200\n200") {
-				_tile_matrix[i][j] = new Tile("resources/prototile.png", 200);
+			if (data == "201\n201") {
+				_tile_matrix[i][j] = new Tile("resources/prototile.png", 201);
 				i++;
 				j = 0;
-				_tile_matrix[i][j] = new Tile("resources/prototile.png", 200);
+				_tile_matrix[i][j] = new Tile("resources/prototile.png", 201);
+				j++;
+			}
+			else
+			if (data == "208\n201") {
+				_tile_matrix[i][j] = new Tile("resources/prototile.png", 208);
+				i++;
+				j = 0;
+				_tile_matrix[i][j] = new Tile("resources/prototile.png", 201);
+				j++;
+			}
+			else
+			if (data == "201\n207") {
+				_tile_matrix[i][j] = new Tile("resources/prototile.png", 201);
+				i++;
+				j = 0;
+				_tile_matrix[i][j] = new Tile("resources/prototile.png", 207);
+				j++;
+			}
+			else
+			if (data == "205\n201") {
+				_tile_matrix[i][j] = new Tile("resources/prototile.png", 205);
+				i++;
+				j = 0;
+				_tile_matrix[i][j] = new Tile("resources/prototile.png", 201);
+				j++;
+			}
+			else
+			if (data == "201\n204") {
+				_tile_matrix[i][j] = new Tile("resources/prototile.png", 201);
+				i++;
+				j = 0;
+				_tile_matrix[i][j] = new Tile("resources/prototile.png", 204);
 				j++;
 			}
 			else

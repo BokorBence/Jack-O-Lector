@@ -31,6 +31,18 @@ Game_scene::Game_scene(SDL_Renderer* r, Scene* next_scene)
 	surfs[20] = IMG_Load("resources/bush.png");
 	surfs[21] = IMG_Load("resources/objective.png");
 	surfs[22] = IMG_Load("resources/horizontalwall.png");
+	surfs[23] = IMG_Load("resources/verticalwall.png");
+	surfs[24] = IMG_Load("resources/walldown.png");
+	surfs[25] = IMG_Load("resources/wallup.png");
+	surfs[26] = IMG_Load("resources/wallleft.png");
+	surfs[27] = IMG_Load("resources/wallright.png");
+	surfs[28] = IMG_Load("resources/wallupleft.png");
+	surfs[29] = IMG_Load("resources/wallupright.png");
+	surfs[30] = IMG_Load("resources/walldownleft.png");
+	surfs[31] = IMG_Load("resources/walldownright.png");
+	surfs[32] = IMG_Load("resources/wallendleft.png");
+	surfs[33] = IMG_Load("resources/wallendright.png");
+	surfs[34] = IMG_Load("resources/superwall.png");
 	int k = sizeof(surfs) / sizeof(surfs[0]);
 	for (int i = 0; i < k; ++i) {
 		texts[i] = SDL_CreateTextureFromSurface(renderer, surfs[i]);
@@ -113,9 +125,6 @@ void Game_scene::draw_scene()
 				case 113:
 					SDL_RenderCopy(renderer, texts[13], NULL, &rectest);
 					break;
-				case 200:
-					SDL_RenderCopy(renderer, texts[22], NULL, &rectest);
-					break;
 				case 300:
 					SDL_RenderCopy(renderer, texts[14], NULL, &rectest);
 					break;
@@ -139,6 +148,45 @@ void Game_scene::draw_scene()
 					break;
 				case 500:
 					SDL_RenderCopy(renderer, texts[21], NULL, &rectest);
+					break;
+				case 200:
+					SDL_RenderCopy(renderer, texts[22], NULL, &rectest);
+					break;
+				case 201:
+					SDL_RenderCopy(renderer, texts[23], NULL, &rectest);
+					break;
+				case 202:
+					SDL_RenderCopy(renderer, texts[24], NULL, &rectest);
+					break;
+				case 203:
+					SDL_RenderCopy(renderer, texts[25], NULL, &rectest);
+					break;
+				case 204:
+					SDL_RenderCopy(renderer, texts[26], NULL, &rectest);
+					break;
+				case 205:
+					SDL_RenderCopy(renderer, texts[27], NULL, &rectest);
+					break;
+				case 206:
+					SDL_RenderCopy(renderer, texts[28], NULL, &rectest);
+					break;
+				case 207:
+					SDL_RenderCopy(renderer, texts[29], NULL, &rectest);
+					break;
+				case 208:
+					SDL_RenderCopy(renderer, texts[30], NULL, &rectest);
+					break;
+				case 209:
+					SDL_RenderCopy(renderer, texts[31], NULL, &rectest);
+					break;
+				case 210:
+					SDL_RenderCopy(renderer, texts[32], NULL, &rectest);
+					break;
+				case 211:
+					SDL_RenderCopy(renderer, texts[33], NULL, &rectest);
+					break;
+				case 212:
+					SDL_RenderCopy(renderer, texts[34], NULL, &rectest);
 					break;
 				default:
 					break;
