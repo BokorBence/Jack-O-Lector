@@ -30,6 +30,7 @@ Game_scene::Game_scene(SDL_Renderer* r, Scene* next_scene)
 	surfs[19] = IMG_Load("resources/pineup.png");
 	surfs[20] = IMG_Load("resources/bush.png");
 	surfs[21] = IMG_Load("resources/objective.png");
+	surfs[22] = IMG_Load("resources/horizontalwall.png");
 	int k = sizeof(surfs) / sizeof(surfs[0]);
 	for (int i = 0; i < k; ++i) {
 		texts[i] = SDL_CreateTextureFromSurface(renderer, surfs[i]);
@@ -111,6 +112,9 @@ void Game_scene::draw_scene()
 					break;
 				case 113:
 					SDL_RenderCopy(renderer, texts[13], NULL, &rectest);
+					break;
+				case 200:
+					SDL_RenderCopy(renderer, texts[22], NULL, &rectest);
 					break;
 				case 300:
 					SDL_RenderCopy(renderer, texts[14], NULL, &rectest);

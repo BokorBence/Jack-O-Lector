@@ -13,8 +13,8 @@ public:
 	void draw_scene() override;
 	void handle_events(const SDL_Event &) override;
 private:
-	SDL_Surface* surfs[22];
-	SDL_Texture* texts[22];
+	SDL_Surface* surfs[23];
+	SDL_Texture* texts[23];
 	SDL_Rect rects[38][50];
 	SDL_Rect rectest;
 	Scene* next;
