@@ -46,6 +46,17 @@ void Game_scene::draw_scene()
 
 void Game_scene::handle_events(const SDL_Event &ev)
 {
-
+	if (ev.type == SDL_KEYDOWN && ev.key.keysym.sym == SDLK_w) {
+		g_logic->keyBoardInput('w');
+	}
+	if (ev.type == SDL_KEYDOWN && ev.key.keysym.sym == SDLK_a) {
+		g_logic->keyBoardInput('a');
+	}
+	if (ev.type == SDL_KEYDOWN && ev.key.keysym.sym == SDLK_s) {
+		g_logic->keyBoardInput('s');
+	}
+	if (ev.type == SDL_KEYDOWN && ev.key.keysym.sym == SDLK_d) {
+		g_logic->keyBoardInput('d');
+	}
 }
 

@@ -1,5 +1,10 @@
 #include "../include/game.hpp"
 #include "../include/level_1.hpp"
+#include<time.h>
+#include<stdlib.h>
+#include<stdio.h>
+#include<conio.h>
+#include<windows.h>
 
 
 
@@ -8,6 +13,8 @@ Game::Game(int _lvl) {
 
 	std::cout << "Width: " << width << std::endl;
 	std::cout << "Height: " << height << std::endl;
+	guard = new Guard(8, 13, 2, true, 8);
+	Jack = new walkingEntity(5, 5, 2);
 
 	switch (_lvl)
 	{
@@ -24,17 +31,24 @@ Game::Game(int _lvl) {
 		break;
 	}
 	
-	for (int i = 0; i < height; i++) {
-		for (int j = 0; j < width; j++) {
-			gameBoard[j][i] = '|';
+	for (int i = 0; i < 20; i++) {
+		for (int j = 0; j < 20; j++) {
+			if (guard->get_x() == i && guard->get_y() == j) {
+				gameBoard[i][j] = 'G';
+			}
+			if (Jack->get_x() == i && Jack->get_y() == j) {
+				gameBoard[i][j] = '$';
+			}
+			else gameBoard[j][i] = '|';
 		}
 	}
+	
 }
 
 void Game::printGameBoard() {
 	std::cout << "Game Board" << std::endl;
-	for (int i = 0; i < height; i++) {
-		for (int j = 0; j < width; j++){
+	for (int i = 0; i < 20; i++) {
+		for (int j = 0; j < 20; j++){
 		std::cout << " " << gameBoard[j][i] << " ";
 		}
 		std::cout << std::endl;
@@ -72,6 +86,11 @@ void Game::simulate(bool gameRunning, walkingEntity walker, Guard* guards, int n
 		system("pause>nul");
 	}
 }
+
+void Game::editGameBoardEntityPositions(){
+	gameBoard[guard->get_x()][guard->get_y()] = 'G';
+	gameBoard[Jack->get_x()][Jack->get_y()] = '$';
+}
 	
 void Game::gameloop(bool game_running) {
 
@@ -81,18 +100,103 @@ void Game::gameloop(bool game_running) {
 	std::chrono::time_point<std::chrono::steady_clock> fpsTimer(std::chrono::steady_clock::now());
 	frame FPS{};
 
+	int sec = 0;
+
 	while (game_running) {
 		FPS = std::chrono::duration_cast<frame>(std::chrono::steady_clock::now() - fpsTimer);
 		if (FPS.count() > 1)
 		{
+			if (sec == 60) {
+				//std::cout << "                            oooo\n                           oooooo\n                           oooooo\n                           oooooo\n                            oooo\n                            oooo\n                            oooo\n                            oooo\n                            oooo\n                      ooo   oooo   ooo\n                     ooooo  oooo  ooooo\n                    oooooooooooooooooooo\n                     oooooooooooooooooo\n                      oooooooooooooooo\n" << std::endl;
+				int tmp_x = guard->get_x();
+				int tmp_y = guard->get_y();
+				guard->Move();
+				gameBoard[tmp_x][tmp_y] = '|';
+				editGameBoardEntityPositions();
+				sec = 0;
+			}
+			for (int i = 0; i < 20; i++) {
+				for (int j = 0; j < 20; j++) {
+					std::cout << " " << gameBoard[j][i] << " ";
+				}
+				std::cout << std::endl;
+			}
+
 			fpsTimer = std::chrono::steady_clock::now();
-			std::cout << "LastFrame: " << std::chrono::duration_cast<ms>(FPS).count() << "ms  |  FPS: " << FPS.count() * 60 << std::endl;
+			std::cout << "LastFrame: " << std::chrono::duration_cast<ms>(FPS).count() << "ms  |  FPS: " << FPS.count() * 30 << std::endl;
+			sec += FPS.count();
+			std::cout << sec << std::endl;
 
 		}
 	}
-
-	
-
 }
+
+void Game::keyBoardInput(char c) {
+	switch (c){
+		case 'w':
+			Jack->moveUp();
+			break;
+		case 's':
+			Jack->moveDown();
+			break;
+		case 'a':
+			Jack->moveLeft();
+			break;
+		case 'd':
+			Jack->moveRight();
+			break;
+		default:
+			break;
+	}
+	editGameBoardEntityPositions();
+}
+
+/*
+void Game::gameloop(bool gameRunning) {
+	int NewTime = 0;
+	int OldTime = 0;
+	float dt = 0;
+	float TotalTime = 0;
+	int FrameCounter = 0;
+	int RENDER_FRAME_COUNT = 60;
+
+	while (true) {
+
+		NewTime = timeGetTime();
+		dt = (float)(NewTime - OldTime) / 1000; //delta time
+		OldTime = NewTime;
+
+		if (dt > (0.016f)) dt = (0.016f);  //delta time
+		if (dt < 0.001f) dt = 0.001f;
+
+		TotalTime += dt;
+
+		if (TotalTime > 1.1f) {
+			TotalTime = 0;
+		}
+
+		if (FrameCounter >= RENDER_FRAME_COUNT) {
+
+			printf(" \n");
+			printf("OldTime      = %d \n", OldTime);
+			printf("NewTime      = %d \n", NewTime);
+			printf("dt           = %f  \n", dt);
+			printf("TotalTime    = %f  \n", TotalTime);
+			printf("FrameCounter = %d fps\n", FrameCounter);
+			printf("   \n");
+			FrameCounter = 0;
+
+		}
+		else {
+			printf("%d  ", FrameCounter);
+			FrameCounter++;
+
+		}
+	}
+}
+*/
+
+
+
 
 

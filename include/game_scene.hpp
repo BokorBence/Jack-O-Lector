@@ -10,11 +10,11 @@ public:
 	void init_level(int);
     Game_scene(SDL_Renderer*, Scene*);
 	~Game_scene();
+	Game* g_logic;
 	void draw_scene() override;
 	void handle_events(const SDL_Event &) override;
 private:
 	Scene* next;
-    Game* g_logic;
 	SDL_Surface* jack_sur;
 	SDL_Texture* jack_tex;
 	SDL_Rect jack_rect;

@@ -83,8 +83,8 @@ void Guard::Move()
 			}
 		}
 	}
-	//else 
-		//Search();
+	else 
+		Search();
 }
 
 void Guard::Search()

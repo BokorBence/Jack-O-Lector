@@ -35,7 +35,7 @@ int main(int argc, char* argv[]) {
     {
         std::cout << "SDL_IMG for png initialization failed " << IMG_GetError();
     }
-  
+    
 
     Main_menu_scene main_menu(renderer, &quit, NULL);
     Game_scene game(renderer, NULL);
@@ -53,12 +53,17 @@ int main(int argc, char* argv[]) {
 
     SDL_Event evt;
 
+    game.g_logic->gameloop(true);
+
+    
     while (!quit)
     {
         //achieving constant framerate
         frameStart = SDL_GetTicks();
         SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
         SDL_RenderClear(renderer);
+
+        
 
         // event loop and draw loop are separate things, don't mix them
         while (SDL_PollEvent(&evt)) {
@@ -84,11 +89,7 @@ int main(int argc, char* argv[]) {
             scenes.push(next);
         }
 
-        
-        
         scenes.top()->draw_scene();
-
-           
 
         frameTime = SDL_GetTicks() - frameStart;
 
@@ -96,9 +97,14 @@ int main(int argc, char* argv[]) {
             SDL_Delay(frameDelay - frameTime);
         }
 
+
        
          SDL_RenderPresent(renderer);
     }
+    
+
+    std::cout << std::endl << "Main end :(" << std::endl;
+
     SDL_DestroyWindow(window);
     SDL_DestroyRenderer(renderer);
     return 0;
