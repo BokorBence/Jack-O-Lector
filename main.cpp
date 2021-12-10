@@ -53,7 +53,7 @@ int main(int argc, char* argv[]) {
 
     SDL_Event evt;
 
-    game.g_logic->gameloop(true);
+    //game.g_logic->gameloop(true);
 
     
     while (!quit)
@@ -96,8 +96,6 @@ int main(int argc, char* argv[]) {
         if (frameDelay > frameTime) {
             SDL_Delay(frameDelay - frameTime);
         }
-
-
        
          SDL_RenderPresent(renderer);
     }

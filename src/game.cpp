@@ -15,6 +15,7 @@ Game::Game(int _lvl) {
 	std::cout << "Height: " << height << std::endl;
 	guard = new Guard(8, 13, 2, true, 8);
 	Jack = new walkingEntity(5, 5, 2);
+	elapsedTime = 0;
 
 	switch (_lvl)
 	{
@@ -30,7 +31,7 @@ Game::Game(int _lvl) {
 	default:
 		break;
 	}
-	
+	/*
 	for (int i = 0; i < 20; i++) {
 		for (int j = 0; j < 20; j++) {
 			if (guard->get_x() == i && guard->get_y() == j) {
@@ -42,6 +43,7 @@ Game::Game(int _lvl) {
 			else gameBoard[j][i] = '|';
 		}
 	}
+	*/
 	
 }
 
@@ -91,44 +93,30 @@ void Game::editGameBoardEntityPositions(){
 	gameBoard[guard->get_x()][guard->get_y()] = 'G';
 	gameBoard[Jack->get_x()][Jack->get_y()] = '$';
 }
-	
-void Game::gameloop(bool game_running) {
 
-	using frame = std::chrono::duration<int32_t, std::ratio<1, 60>>;
-	using ms = std::chrono::duration<float, std::milli>;
 
-	std::chrono::time_point<std::chrono::steady_clock> fpsTimer(std::chrono::steady_clock::now());
-	frame FPS{};
+void Game::gameStep() {
 
-	int sec = 0;
-
-	while (game_running) {
-		FPS = std::chrono::duration_cast<frame>(std::chrono::steady_clock::now() - fpsTimer);
-		if (FPS.count() > 1)
-		{
-			if (sec == 60) {
-				//std::cout << "                            oooo\n                           oooooo\n                           oooooo\n                           oooooo\n                            oooo\n                            oooo\n                            oooo\n                            oooo\n                            oooo\n                      ooo   oooo   ooo\n                     ooooo  oooo  ooooo\n                    oooooooooooooooooooo\n                     oooooooooooooooooo\n                      oooooooooooooooo\n" << std::endl;
-				int tmp_x = guard->get_x();
-				int tmp_y = guard->get_y();
-				guard->Move();
-				gameBoard[tmp_x][tmp_y] = '|';
-				editGameBoardEntityPositions();
-				sec = 0;
-			}
-			for (int i = 0; i < 20; i++) {
-				for (int j = 0; j < 20; j++) {
-					std::cout << " " << gameBoard[j][i] << " ";
-				}
-				std::cout << std::endl;
-			}
-
-			fpsTimer = std::chrono::steady_clock::now();
-			std::cout << "LastFrame: " << std::chrono::duration_cast<ms>(FPS).count() << "ms  |  FPS: " << FPS.count() * 30 << std::endl;
-			sec += FPS.count();
-			std::cout << sec << std::endl;
-
+	elapsedTime = (elapsedTime + 1) % 60;
+	if (elapsedTime == 0) {
+		int tmp_x = guard->get_x();
+		int tmp_y = guard->get_y();
+		guard->Move();
+		std::cout << "Guard X position: " << guard->get_x() << std::endl;
+		std::cout << "Guard Y position: " << guard->get_y() << std::endl;
+		editGameBoardEntityPositions();
+		/*
+		for (int i = 0; i < 20; i++) {
+			for (int j = 0; j < 20; j++) {
+				std::cout << " " << gameBoard[j][i] << " ";
+			}w
+			std::cout << std::endl;
 		}
+		*/
+		std::cout << "Jack's current X: " << Jack->get_x() << std::endl;
+		std::cout << "Jack's current Y: " << Jack->get_y() << std::endl;
 	}
+
 }
 
 void Game::keyBoardInput(char c) {
@@ -148,53 +136,10 @@ void Game::keyBoardInput(char c) {
 		default:
 			break;
 	}
-	editGameBoardEntityPositions();
+	//editGameBoardEntityPositions();
 }
 
-/*
-void Game::gameloop(bool gameRunning) {
-	int NewTime = 0;
-	int OldTime = 0;
-	float dt = 0;
-	float TotalTime = 0;
-	int FrameCounter = 0;
-	int RENDER_FRAME_COUNT = 60;
 
-	while (true) {
-
-		NewTime = timeGetTime();
-		dt = (float)(NewTime - OldTime) / 1000; //delta time
-		OldTime = NewTime;
-
-		if (dt > (0.016f)) dt = (0.016f);  //delta time
-		if (dt < 0.001f) dt = 0.001f;
-
-		TotalTime += dt;
-
-		if (TotalTime > 1.1f) {
-			TotalTime = 0;
-		}
-
-		if (FrameCounter >= RENDER_FRAME_COUNT) {
-
-			printf(" \n");
-			printf("OldTime      = %d \n", OldTime);
-			printf("NewTime      = %d \n", NewTime);
-			printf("dt           = %f  \n", dt);
-			printf("TotalTime    = %f  \n", TotalTime);
-			printf("FrameCounter = %d fps\n", FrameCounter);
-			printf("   \n");
-			FrameCounter = 0;
-
-		}
-		else {
-			printf("%d  ", FrameCounter);
-			FrameCounter++;
-
-		}
-	}
-}
-*/
 
 
 

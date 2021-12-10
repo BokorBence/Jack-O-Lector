@@ -38,9 +38,10 @@ void Game_scene::init_level(int level_number)
 
 void Game_scene::draw_scene()
 {
+	g_logic->gameStep();
 	jack_rect = { 10,10, w, h };
 	SDL_RenderCopy(renderer, jack_tex, NULL, &jack_rect);
-	
+
 }
 
 

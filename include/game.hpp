@@ -12,11 +12,12 @@ class Game {
 
 private:
 	Level *_level;
-	int width = 600;
+	int width = 608;
 	int height = 800;
-	char gameBoard[600][800];
+	char gameBoard[608][800];
 	Guard* guard;
 	walkingEntity* Jack;
+	int elapsedTime;
 	//SDL_TimerID timer_id;
 	//TODO: make walkers, guards, and ghosts as a datamember
 public:
@@ -28,5 +29,5 @@ public:
 	void editGameBoardEntityPositions();
 	void simulate(bool gameRunning, walkingEntity walker, Guard* guards, int num_of_guards);
 	void step(walkingEntity* walker, Guard* guards, int num_of_guards);
-	void gameloop(bool gameRunning);
+	void gameStep();
 };
