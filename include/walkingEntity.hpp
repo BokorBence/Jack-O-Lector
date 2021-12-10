@@ -4,8 +4,8 @@
 
 class walkingEntity : public Entity{
 protected:
-	int maxX = 20;
-	int maxY = 20;
+	int maxX = 800;
+	int maxY = 608;
 
 public:
 	walkingEntity(int _x, int _y, int _d);

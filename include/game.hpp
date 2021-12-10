@@ -8,28 +8,14 @@
 class Game {
 
 private:
-<<<<<<< HEAD
-	int width = 600;
-=======
-	Level *_level;
-	int width = 608;
->>>>>>> character_movement
-	int height = 800;
-	char gameBoard[608][800];
-	Guard* guard;
+ 	Guard* guard;
 	walkingEntity* Jack;
 	int elapsedTime;
-	//SDL_TimerID timer_id;
-	//TODO: make walkers, guards, and ghosts as a datamember
 public:
 	Level* _level;
 	Game(int _lvl);
-	int get_width() { return width; }
-	int get_height() { return height; }
-	void printGameBoard();
+	int get_jack_x() const { return Jack->get_x(); }
+	int get_jack_y() const { return Jack->get_y(); }
 	void keyBoardInput(char c);
-	void editGameBoardEntityPositions();
-	void simulate(bool gameRunning, walkingEntity walker, Guard* guards, int num_of_guards);
-	void step(walkingEntity* walker, Guard* guards, int num_of_guards);
 	void gameStep();
 };

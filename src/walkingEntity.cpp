@@ -21,7 +21,7 @@ int walkingEntity::moveUp() {
 		{
 			walkingEntity::turnClockwise();
 		}
-		y--;
+		y-=2;
 		return 0;
 	}
 	else {
@@ -36,7 +36,7 @@ int walkingEntity::moveDown() {
 		{
 			walkingEntity::turnClockwise();
 		}
-		y++;
+		y+=2;
 		return 0;
 	}
 	else {
@@ -51,7 +51,7 @@ int walkingEntity::moveLeft() {
 		{
 			walkingEntity::turnClockwise();
 		}
-		x--;
+		x-=2;
 		return 0;
 	}
 	else {
@@ -66,7 +66,7 @@ int walkingEntity::moveRight() {
 		{
 			walkingEntity::turnClockwise();
 		}
-		x++;
+		x+=2;
 		return 0;
 	}
 	else {

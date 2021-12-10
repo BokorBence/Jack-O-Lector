@@ -80,9 +80,6 @@ void Game_scene::init_level(int level_number)
 void Game_scene::draw_scene()
 {
 	g_logic->gameStep();
-	jack_rect = { 10,10, w, h };
-	SDL_RenderCopy(renderer, jack_tex, NULL, &jack_rect);
-<<<<<<< HEAD
 	for (int i = 0; i < 38; ++i) {
 		for (int j = 0; j < 50; ++j) {
 			rectest = {j*16,i*16,16,16};
@@ -203,10 +200,8 @@ void Game_scene::draw_scene()
 			}
 		}
 	}
-	
-=======
-
->>>>>>> character_movement
+	jack_rect = { g_logic->get_jack_x(),g_logic->get_jack_y(), w, h};
+	SDL_RenderCopy(renderer, jack_tex, NULL, &jack_rect);
 }
 
 

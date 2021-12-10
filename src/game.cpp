@@ -6,8 +6,6 @@
 
 Game::Game(int _lvl) {
 
-	std::cout << "Width: " << width << std::endl;
-	std::cout << "Height: " << height << std::endl;
 	guard = new Guard(8, 13, 2, true, 8);
 	Jack = new walkingEntity(5, 5, 2);
 	elapsedTime = 0;
@@ -29,11 +27,6 @@ Game::Game(int _lvl) {
 	
 }
 
-void Game::editGameBoardEntityPositions(){
-	gameBoard[guard->get_x()][guard->get_y()] = 'G';
-	gameBoard[Jack->get_x()][Jack->get_y()] = '$';
-}
-
 
 void Game::gameStep() {
 
@@ -44,7 +37,6 @@ void Game::gameStep() {
 		guard->Move();
 		std::cout << "Guard X position: " << guard->get_x() << std::endl;
 		std::cout << "Guard Y position: " << guard->get_y() << std::endl;
-		editGameBoardEntityPositions();
 		std::cout << "Jack's current X: " << Jack->get_x() << std::endl;
 		std::cout << "Jack's current Y: " << Jack->get_y() << std::endl;
 	}
@@ -69,7 +61,6 @@ void Game::keyBoardInput(char c) {
 		default:
 			break;
 	}
-	//editGameBoardEntityPositions();
 }
 
 

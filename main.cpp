@@ -97,8 +97,6 @@ int main(int argc, char* argv[]) {
     }
     
 
-    std::cout << std::endl << "Main end :(" << std::endl;
-
     SDL_DestroyWindow(window);
     SDL_DestroyRenderer(renderer);
     return 0;
