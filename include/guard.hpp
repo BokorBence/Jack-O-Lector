@@ -8,6 +8,7 @@ private:
 	int search_time = 5;
 	bool is_searching;
 	bool horizontal;
+	bool one_way;
 	int stop_x;
 	int stop_y;
 	int start_x;
