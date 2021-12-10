@@ -16,7 +16,7 @@ walkingEntity::walkingEntity(int _x, int _y, int _d) {
 }
 
 int walkingEntity::moveUp() {
-	if (y > 0) {
+	if (y > 1) {
 		while (d != 2)
 		{
 			walkingEntity::turnClockwise();
@@ -31,7 +31,7 @@ int walkingEntity::moveUp() {
 }
 
 int walkingEntity::moveDown() {
-	if (y < maxY) {
+	if (y < maxY-1) {
 		while (d != 0)
 		{
 			walkingEntity::turnClockwise();
@@ -46,7 +46,7 @@ int walkingEntity::moveDown() {
 }
 
 int walkingEntity::moveLeft() {
-	if (x > 0) {
+	if (x > 1) {
 		while (d != 3)
 		{
 			walkingEntity::turnClockwise();
@@ -61,7 +61,7 @@ int walkingEntity::moveLeft() {
 }
 
 int walkingEntity::moveRight() {
-	if (x < maxX) {
+	if (x < maxX-1) {
 		while (d != 1)
 		{
 			walkingEntity::turnClockwise();
@@ -86,6 +86,8 @@ void walkingEntity::turnAntiClockwise()
 	d = d + 1;
 	if (d > 3) d = 0;
 }
+
+
 
 
 

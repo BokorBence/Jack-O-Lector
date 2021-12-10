@@ -12,7 +12,6 @@ Level_1::Level_1(std::string path)
 		int j = 0;
 		for (std::string data; std::getline(read_file, data, ' '); )
 		{
-			std::cout << data;
 			if (data == "201\n201") {
 				_tile_matrix[i][j] = new Tile("resources/prototile.png", 201);
 				i++;

@@ -38,6 +38,14 @@ Game::Game(int _lvl) {
 		}
 		break;
 	default:
+		_level = new Level_1("levels/level1.txt");
+		set_num_of_guards(5);
+
+		guards.push_back(new Guard(33, 107, 2, false, 180));
+		guards.push_back(new Guard(353, 27, 2, false, 186));
+		guards.push_back(new Guard(27, 503, 2, true, 570));
+		guards.push_back(new Guard(545, 263, 2, true, 216));
+		guards.push_back(new Guard(207, 276, 2, true, 248));
 		break;
 	}
 	
@@ -53,8 +61,8 @@ void Game::gameStep() {
 
 		//std::cout << "Guard X position: " << guards[0]->get_x() << std::endl;
 		//std::cout << "Guard Y position: " << guards[0]->get_y() << std::endl;
-		std::cout << "Jack's current X: " << Jack->get_x() << std::endl;
-		std::cout << "Jack's current Y: " << Jack->get_y() << std::endl;
+		//std::cout << "Jack's current X: " << Jack->get_x() << std::endl;
+		//std::cout << "Jack's current Y: " << Jack->get_y() << std::endl;
 	}
 	if (elapsedTime % 2 == 0)
 	{
@@ -67,20 +75,33 @@ void Game::gameStep() {
 
 }
 
+//g_logic->_level->_tile_matrix[0][0]->get_type()
+
+bool Game::isWall(int x, int y) {
+	return(_level->_tile_matrix[x/16][y/16]->get_type() / 100 == 2);
+}
 
 void Game::keyBoardInput(char c) {
 	switch (c){
 		case 'w':
-			Jack->moveUp();
+			if (!((_level->_tile_matrix[(Jack->topLeftY() - 2) / 16][Jack->topLeftX() / 16]->get_type() / 100 == 2) ||
+				(_level->_tile_matrix[(Jack->topRightY() - 2) / 16][Jack->topRightX() / 16]->get_type() / 100 == 2)))
+				Jack->moveUp();
 			break;
 		case 's':
-			Jack->moveDown();
+			if (!((_level->_tile_matrix[(Jack->botLeftY()+2) / 16][Jack->botLeftX() / 16]->get_type() / 100 == 2) ||
+				(_level->_tile_matrix[(Jack->botRightY()+2) / 16][Jack->botRightX() / 16]->get_type() / 100 == 2)))
+				Jack->moveDown();
 			break;
 		case 'a':
-			Jack->moveLeft();
+			if (!((_level->_tile_matrix[Jack->topLeftY() / 16][(Jack->topLeftX() - 2) / 16]->get_type() / 100 == 2) ||
+				(_level->_tile_matrix[Jack->botLeftY() / 16][(Jack->botLeftX() - 2) / 16]->get_type() / 100 == 2)))
+				Jack->moveLeft();
 			break;
 		case 'd':
-			Jack->moveRight();
+			if (!((_level->_tile_matrix[Jack->topRightY() / 16][(Jack->topRightX() + 2) / 16]->get_type() / 100 == 2) ||
+				(_level->_tile_matrix[Jack->botRightY() / 16][(Jack->botRightX() + 2) / 16]->get_type() / 100 == 2)))
+				Jack->moveRight();
 			break;
 		default:
 			break;

@@ -24,4 +24,5 @@ public:
 	void set_num_of_guards(int a) { num_of_guards = a; }
 	void keyBoardInput(char c);
 	void gameStep();
+	bool isWall(int x, int y);
 };
