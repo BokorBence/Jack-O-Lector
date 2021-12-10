@@ -8,6 +8,7 @@
 #include "include/main_menu_scene.hpp"
 #include "include/level_select_menu_scene.hpp"
 #include "include/game_scene.hpp"
+#include "include/game_over_scene.hpp"
 #include <stack>
 
 int main(int argc, char* argv[]) {
@@ -15,7 +16,7 @@ int main(int argc, char* argv[]) {
     std::stack<Scene*> scenes;
     SDL_Init(SDL_INIT_VIDEO);
     SDL_Window* window = NULL;
-    window = SDL_CreateWindow("Jack O'Lector", 350, 150, 800, 600, SDL_WINDOW_SHOWN);
+    window = SDL_CreateWindow("Jack O'Lector", 350, 150, 800, 608, SDL_WINDOW_SHOWN);
 
     if (window == NULL) {
         fprintf(stderr, "create window failed: %s\n", SDL_GetError());
@@ -35,11 +36,15 @@ int main(int argc, char* argv[]) {
     {
         std::cout << "SDL_IMG for png initialization failed " << IMG_GetError();
     }
-  
+    
 
     Main_menu_scene main_menu(renderer, &quit, NULL);
-    Game_scene game(renderer, NULL);
+    Game_over_scene victory(renderer, &quit, true);
+    Game_over_scene defeat(renderer, &quit, false);
+    Game_scene game(renderer, &victory,&defeat);
     Level_select_menu_scene level_select_menu(renderer, &main_menu, &game);
+
+
 
     scenes.push(&game);
     scenes.push(&level_select_menu);
@@ -47,15 +52,19 @@ int main(int argc, char* argv[]) {
 
     Uint32 frameTime, frameStart;
     const Uint32 frameDelay = 17;
-
     SDL_Event evt;
 
+    //game.g_logic->gameloop(true);
+
+    
     while (!quit)
     {
         //achieving constant framerate
         frameStart = SDL_GetTicks();
         SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
         SDL_RenderClear(renderer);
+
+        
 
         // event loop and draw loop are separate things, don't mix them
         while (SDL_PollEvent(&evt)) {
@@ -81,21 +90,18 @@ int main(int argc, char* argv[]) {
             scenes.push(next);
         }
 
-        
-        
         scenes.top()->draw_scene();
-
-           
 
         frameTime = SDL_GetTicks() - frameStart;
 
         if (frameDelay > frameTime) {
             SDL_Delay(frameDelay - frameTime);
         }
-
        
          SDL_RenderPresent(renderer);
     }
+    
+
     SDL_DestroyWindow(window);
     SDL_DestroyRenderer(renderer);
     return 0;

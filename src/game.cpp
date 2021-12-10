@@ -1,82 +1,168 @@
 #include "../include/game.hpp"
+#include "../include/level_1.hpp"
+#include<stdlib.h>
+#include<stdio.h>
 
 
+Game::Game(int _lvl) {
 
+	guard = new Guard(8, 13, 2, true, 8);
+	Jack = new walkingEntity(55, 3, 2);
+	elapsedTime = 0;
+	is_game_over = false;
+	has_objective = false;
 
-Game::Game() {
-
-	std::cout << "Width: " << width << std::endl;
-	std::cout << "Height: " << height << std::endl;
-	
-	for (int i = 0; i < height; i++) {
-		for (int j = 0; j < width; j++) {
-			gameBoard[j][i] = '|';
-		}
-	}
-}
-
-void Game::printGameBoard() {
-	std::cout << "Game Board" << std::endl;
-	for (int i = 0; i < height; i++) {
-		for (int j = 0; j < width; j++){
-		std::cout << " " << gameBoard[j][i] << " ";
-		}
-		std::cout << std::endl;
-	}
-}
-
-void Game::step(walkingEntity *walker, Guard* guards, int num_of_guards) {
-	for (int i = 0; i < num_of_guards;i++)
+	switch (_lvl)
 	{
-		//gameBoard[guards[i].get_x()][guards[i].get_y()] = '|';
-		guards[i].Move();
-		gameBoard[guards[i].get_x()][guards[i].get_y()] = 'Y';
+	case 1:
+		_level = new Level_1("levels/level1.txt");
+		set_num_of_guards(5);
+		
+		guards.push_back(new Guard(33, 107, 2, false, 180));
+		guards.push_back(new Guard(353, 27, 2, false, 186));
+		guards.push_back(new Guard(27, 503, 2, true, 570));
+		guards.push_back(new Guard(545, 263, 2, true, 216));
+		guards.push_back(new Guard(207, 276, 2, true, 248));
+		
+		break;
+	case 2:
+		_level = new Level_1("levels/level1.txt");
+		set_num_of_guards(3);
+		for (int i = 0; i < get_num_of_guards(); ++i) {
+			guards.push_back(new Guard(8, 13, 2, true, 8));
+		}
+		break;
+	case 3:
+		_level = new Level_1("levels/level1.txt");
+		set_num_of_guards(3);
+		for (int i = 0; i < get_num_of_guards(); ++i) {
+			guards.push_back(new Guard(8, 13, 2, true, 8));
+		}
+		break;
+	default:
+		_level = new Level_1("levels/level1.txt");
+		set_num_of_guards(5);
+
+		guards.push_back(new Guard(33, 107, 2, false, 180));
+		guards.push_back(new Guard(353, 27, 2, false, 186));
+		guards.push_back(new Guard(27, 503, 2, true, 570));
+		guards.push_back(new Guard(545, 263, 2, true, 216));
+		guards.push_back(new Guard(207, 276, 2, true, 248));
+		break;
 	}
-	int tmp_x = walker->get_x();
-	int tmp_y = walker->get_y();
-	//if (getch() == 72) walker->moveUp();
-	//if (getch() == 80) walker->moveDown();
-	//if (getch() == 77) walker->moveRight();
-	//if (getch() == 75) walker->moveLeft();
-	if (walker->get_d() == 0 || walker->get_d() == 2)
-		gameBoard[walker->get_x()][walker->get_y()] = '^';
-	else
-		gameBoard[walker->get_x()][walker->get_y()] = '>';
-	gameBoard[tmp_x][tmp_y] = '|';
-
-}
-
-
-void Game::simulate(bool gameRunning, walkingEntity walker, Guard* guards, int num_of_guards) {
-	//SDL_AddTimer(1000, SDL_TimerCallback(1000),&(this->step(&walker, guards, num_of_guards)));
-	while (gameRunning) {
-		system("cls");
-		Game::step(&walker, guards, num_of_guards);
-		Game::printGameBoard();
-		system("pause>nul");
-	}
-}
 	
-void Game::gameloop(bool game_running) {
+}
 
-	using frame = std::chrono::duration<int32_t, std::ratio<1, 60>>;
-	using ms = std::chrono::duration<float, std::milli>;
 
-	std::chrono::time_point<std::chrono::steady_clock> fpsTimer(std::chrono::steady_clock::now());
-	frame FPS{};
+void Game::gameStep() {
 
-	while (game_running) {
-		FPS = std::chrono::duration_cast<frame>(std::chrono::steady_clock::now() - fpsTimer);
-		if (FPS.count() > 1)
+	elapsedTime = (elapsedTime + 1) % 60;
+	if (elapsedTime == 0) {
+		int tmp_x = guard->get_x();
+		int tmp_y = guard->get_y();
+
+		//std::cout << "Guard X position: " << guards[0]->get_x() << std::endl;
+		//std::cout << "Guard Y position: " << guards[0]->get_y() << std::endl;
+		//std::cout << "Jack's current X: " << Jack->get_x() << std::endl;
+		//std::cout << "Jack's current Y: " << Jack->get_y() << std::endl;
+	}
+	if (elapsedTime % 2 == 0)
+	{
+		for (int i = 0; i < get_num_of_guards();++i)
 		{
-			fpsTimer = std::chrono::steady_clock::now();
-			std::cout << "LastFrame: " << std::chrono::duration_cast<ms>(FPS).count() << "ms  |  FPS: " << FPS.count() * 60 << std::endl;
+			guards[i]->Move();
 
 		}
 	}
+	game_check();
+}
 
-	
+//g_logic->_level->_tile_matrix[0][0]->get_type()
+void Game::game_check()
+{
+	if (is_game_over) return;
+
+	for (int i = 0;i < get_num_of_guards();++i)
+	{
+		int xx = Jack->botRightX();
+		int yy = Jack->botRightY();
+		if (xx <= guards[i]->botRightX() && xx >= guards[i]->botLeftX() && yy <= guards[i]->botLeftY() && yy >= guards[i]->get_y())
+		{
+			std::cout << "Lost:eltüntek \n";
+			is_game_over = true;
+		}
+		xx = Jack->botLeftX();
+		yy = Jack->botLeftY();
+		if (xx <= guards[i]->botRightX() && xx >= guards[i]->botLeftX() && yy <= guards[i]->botLeftY() && yy >= guards[i]->get_y())
+		{
+			std::cout << "Lost:eltüntek \n";
+			is_game_over = true;
+		}
+		xx = Jack->get_x();
+		yy = Jack->get_y();
+		if (xx <= guards[i]->botRightX() && xx >= guards[i]->botLeftX() && yy <= guards[i]->botLeftY() && yy >= guards[i]->get_y())
+		{
+			std::cout << "Lost:eltüntek \n";
+			is_game_over = true;
+		}
+		xx = Jack->rightTopX();
+		yy = Jack->get_y();
+		if (xx <= guards[i]->botRightX() && xx >= guards[i]->botLeftX() && yy <= guards[i]->botLeftY() && yy >= guards[i]->get_y())
+		{
+			std::cout << "Lost:eltüntek \n";
+			is_game_over = true;
+		}
+
+	}
+
+	check_objective();
+
+	if (has_objective && get_jack_y() >= 0 && get_jack_y() <= 10 && get_jack_x() >= 48 && get_jack_x() <= 80) {
+		std::cout << "Found:megtaláltak \n";
+		victory = true;
+		is_game_over = true;
+	}
 
 }
+
+void Game::check_objective() {
+	int xx = Jack->midX();
+	int yy = Jack->midY();
+	if (yy >= 528 && yy <= 544 && xx >= 704 && xx <= 720) {
+		has_objective = true;
+	}
+}
+
+void Game::keyBoardInput(char c) {
+	switch (c){
+		case 'w':
+			if (!((_level->_tile_matrix[(Jack->topLeftY() - 2) / 16][Jack->topLeftX() / 16]->get_type() / 100 == 2) ||
+				(_level->_tile_matrix[(Jack->topRightY() - 2) / 16][Jack->topRightX() / 16]->get_type() / 100 == 2)))
+				Jack->moveUp();
+			break;
+		case 's':
+			if (!((_level->_tile_matrix[(Jack->botLeftY()+2) / 16][Jack->botLeftX() / 16]->get_type() / 100 == 2) ||
+				(_level->_tile_matrix[(Jack->botRightY()+2) / 16][Jack->botRightX() / 16]->get_type() / 100 == 2)))
+				Jack->moveDown();
+			break;
+		case 'a':
+			if (!((_level->_tile_matrix[Jack->topLeftY() / 16][(Jack->topLeftX() - 2) / 16]->get_type() / 100 == 2) ||
+				(_level->_tile_matrix[Jack->botLeftY() / 16][(Jack->botLeftX() - 2) / 16]->get_type() / 100 == 2)))
+				Jack->moveLeft();
+			break;
+		case 'd':
+			if (!((_level->_tile_matrix[Jack->topRightY() / 16][(Jack->topRightX() + 2) / 16]->get_type() / 100 == 2) ||
+				(_level->_tile_matrix[Jack->botRightY() / 16][(Jack->botRightX() + 2) / 16]->get_type() / 100 == 2)))
+				Jack->moveRight();
+			break;
+		default:
+			break;
+	}
+}
+
+
+
+
+
 
 
