@@ -46,6 +46,12 @@ Game_scene::Game_scene(SDL_Renderer* r, Scene* win_scene, Scene* lose_scene)
 	surfs[34] = IMG_Load("resources/superwall.png");
 	surfs[35] = IMG_Load("resources/longgrave1.png");
 	surfs[36] = IMG_Load("resources/longgrave2.png");
+	surfs[37] = IMG_Load("resources/whole.png");
+	surfs[38] = IMG_Load("resources/jackbagright.png");
+	surfs[39] = IMG_Load("resources/jackleft.png");
+	surfs[40] = IMG_Load("resources/jackbagleft.png");
+	surfs[41] = IMG_Load("resources/jackback.png");
+	surfs[42] = IMG_Load("resources/jackbagblack.png");
 
 	guard_surfs[0] = IMG_Load("resources/downrightguard.png");
 	guard_surfs[1] = IMG_Load("resources/downleftguard.png");
@@ -165,7 +171,8 @@ void Game_scene::draw_scene()
 				SDL_RenderCopy(renderer, texts[20], NULL, &rectest);
 				break;
 			case 500:
-				SDL_RenderCopy(renderer, texts[21], NULL, &rectest);
+				if (!g_logic->get_objective()) { SDL_RenderCopy(renderer, texts[21], NULL, &rectest); }
+				else { SDL_RenderCopy(renderer, texts[37], NULL, &rectest); }
 				break;
 			case 200:
 				SDL_RenderCopy(renderer, texts[22], NULL, &rectest);
@@ -212,7 +219,24 @@ void Game_scene::draw_scene()
 		}
 	}
 	jack_rect = { g_logic->get_jack_x(),g_logic->get_jack_y(), w, h };
-	SDL_RenderCopy(renderer, jack_tex, NULL, &jack_rect);
+	if (!g_logic->get_objective()) {
+		if(g_logic->get_jack_d() == 1 || g_logic->get_jack_d() == 0)
+			SDL_RenderCopy(renderer, jack_tex, NULL, &jack_rect);
+		if(g_logic->get_jack_d() == 2)
+			SDL_RenderCopy(renderer, texts[41], NULL, &jack_rect);
+		if (g_logic->get_jack_d() == 3)
+			SDL_RenderCopy(renderer, texts[39], NULL, &jack_rect);
+	}
+	else 
+	{ 
+		if (g_logic->get_jack_d() == 1 || g_logic->get_jack_d() == 0)
+			SDL_RenderCopy(renderer, texts[38], NULL, &jack_rect);
+		if (g_logic->get_jack_d() == 2)
+			SDL_RenderCopy(renderer, texts[42], NULL, &jack_rect);
+		if (g_logic->get_jack_d() == 3)
+			SDL_RenderCopy(renderer, texts[40], NULL, &jack_rect);
+	}
+	
 
 	for (int i = 0; i < g_logic->get_num_of_guards(); ++i) {
 
@@ -247,9 +271,14 @@ void Game_scene::handle_events(const SDL_Event &ev)
 		g_logic->keyBoardInput('d');
 	}
 
-	if (g_logic->get_game_over())
+	if (g_logic->get_game_over() && !g_logic->get_win())
 	{
 		push_over_me = lose;
+	}
+
+	if (g_logic->get_game_over() && g_logic->get_win())
+	{
+		push_over_me = win;
 	}
 }
 

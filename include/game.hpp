@@ -15,10 +15,17 @@ private:
 	int num_of_guards;
 	std::vector<Guard*> guards;
 	bool is_game_over;
+	bool has_objective;
+	bool victory = false;
 public:
+	bool get_objective() const { return has_objective; }
+	//void set_objective(bool b) { has_objective = b; }
+	void check_objective();
+	bool get_win() const { return victory; }
 	Level* _level;
 	Game(int _lvl);
 	bool get_game_over() const { return is_game_over; }
+	int get_jack_d() const { return Jack->get_d(); }
 	int get_jack_x() const { return Jack->get_x(); }
 	int get_jack_y() const { return Jack->get_y(); }
 	Guard* get_guard(int a) const { return guards[a]; }

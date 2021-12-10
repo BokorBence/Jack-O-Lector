@@ -10,6 +10,7 @@ Game::Game(int _lvl) {
 	Jack = new walkingEntity(55, 3, 2);
 	elapsedTime = 0;
 	is_game_over = false;
+	has_objective = false;
 
 	switch (_lvl)
 	{
@@ -114,8 +115,22 @@ void Game::game_check()
 
 	}
 
+	check_objective();
 
+	if (has_objective && get_jack_y() >= 0 && get_jack_y() <= 10 && get_jack_x() >= 48 && get_jack_x() <= 80) {
+		std::cout << "Found:megtaláltak \n";
+		victory = true;
+		is_game_over = true;
+	}
 
+}
+
+void Game::check_objective() {
+	int xx = Jack->midX();
+	int yy = Jack->midY();
+	if (yy >= 528 && yy <= 544 && xx >= 704 && xx <= 720) {
+		has_objective = true;
+	}
 }
 
 void Game::keyBoardInput(char c) {
