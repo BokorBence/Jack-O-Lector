@@ -21,6 +21,8 @@ private:
 	Scene* next;
 	SDL_Surface* jack_sur;
 	SDL_Texture* jack_tex;
+	SDL_Surface* guard_surfs[4];
+	SDL_Texture* guard_texts[4];
 	SDL_Rect jack_rect;
 	int w = 16;
 	int h = 32;

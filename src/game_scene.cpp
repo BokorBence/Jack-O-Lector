@@ -45,9 +45,19 @@ Game_scene::Game_scene(SDL_Renderer* r, Scene* next_scene)
 	surfs[34] = IMG_Load("resources/superwall.png");
 	surfs[35] = IMG_Load("resources/longgrave1.png");
 	surfs[36] = IMG_Load("resources/longgrave2.png");
+
+	surfs[0] = IMG_Load("resources/downrightguard.png");
+	surfs[1] = IMG_Load("resources/downleftguard.png");
+	surfs[2] = IMG_Load("resources/uprightguard.png");
+	surfs[3] = IMG_Load("resources/upleftguard.png");
+
 	int k = sizeof(surfs) / sizeof(surfs[0]);
 	for (int i = 0; i < k; ++i) {
 		texts[i] = SDL_CreateTextureFromSurface(renderer, surfs[i]);
+	}
+
+	for (int i = 0; i < 4; ++i) {
+		guard_texts[i] = SDL_CreateTextureFromSurface(renderer, guard_surfs[i]);
 	}
 }
 
@@ -82,126 +92,142 @@ void Game_scene::draw_scene()
 	g_logic->gameStep();
 	for (int i = 0; i < 38; ++i) {
 		for (int j = 0; j < 50; ++j) {
-			rectest = {j*16,i*16,16,16};
+			rectest = { j * 16,i * 16,16,16 };
 			switch (g_logic->_level->_tile_matrix[i][j]->get_type()) {
-				case 100:
-					SDL_RenderCopy(renderer, texts[0], NULL, &rectest);
-					break;
-				case 101:
-					SDL_RenderCopy(renderer, texts[1], NULL, &rectest);
-					break;
-				case 102:
-					SDL_RenderCopy(renderer, texts[2], NULL, &rectest);
-					break;
-				case 103:
-					SDL_RenderCopy(renderer, texts[3], NULL, &rectest);
-					break;
-				case 104:
-					SDL_RenderCopy(renderer, texts[4], NULL, &rectest);
-					break;
-				case 105:
-					SDL_RenderCopy(renderer, texts[5], NULL, &rectest);
-					break;
-				case 106:
-					SDL_RenderCopy(renderer, texts[6], NULL, &rectest);
-					break;
-				case 107:
-					SDL_RenderCopy(renderer, texts[7], NULL, &rectest);
-					break;
-				case 108:
-					SDL_RenderCopy(renderer, texts[8], NULL, &rectest);
-					break;
-				case 109:
-					SDL_RenderCopy(renderer, texts[9], NULL, &rectest);
-					break;
-				case 110:
-					SDL_RenderCopy(renderer, texts[10], NULL, &rectest);
-					break;
-				case 111:
-					SDL_RenderCopy(renderer, texts[11], NULL, &rectest);
-					break;
-				case 112:
-					SDL_RenderCopy(renderer, texts[12], NULL, &rectest);
-					break;
-				case 113:
-					SDL_RenderCopy(renderer, texts[13], NULL, &rectest);
-					break;
-				case 300:
-					SDL_RenderCopy(renderer, texts[14], NULL, &rectest);
-					break;
-				case 301:
-					SDL_RenderCopy(renderer, texts[15], NULL, &rectest);
-					break;
-				case 302:
-					SDL_RenderCopy(renderer, texts[16], NULL, &rectest);
-					break;
-				case 303:
-					SDL_RenderCopy(renderer, texts[35], NULL, &rectest);
-					break;
-				case 304:
-					SDL_RenderCopy(renderer, texts[36], NULL, &rectest);
-					break;
-				case 400:
-					SDL_RenderCopy(renderer, texts[17], NULL, &rectest);
-					break;
-				case 401:
-					SDL_RenderCopy(renderer, texts[18], NULL, &rectest);
-					break;
-				case 402:
-					SDL_RenderCopy(renderer, texts[19], NULL, &rectest);
-					break;
-				case 403:
-					SDL_RenderCopy(renderer, texts[20], NULL, &rectest);
-					break;
-				case 500:
-					SDL_RenderCopy(renderer, texts[21], NULL, &rectest);
-					break;
-				case 200:
-					SDL_RenderCopy(renderer, texts[22], NULL, &rectest);
-					break;
-				case 201:
-					SDL_RenderCopy(renderer, texts[23], NULL, &rectest);
-					break;
-				case 202:
-					SDL_RenderCopy(renderer, texts[24], NULL, &rectest);
-					break;
-				case 203:
-					SDL_RenderCopy(renderer, texts[25], NULL, &rectest);
-					break;
-				case 204:
-					SDL_RenderCopy(renderer, texts[26], NULL, &rectest);
-					break;
-				case 205:
-					SDL_RenderCopy(renderer, texts[27], NULL, &rectest);
-					break;
-				case 206:
-					SDL_RenderCopy(renderer, texts[28], NULL, &rectest);
-					break;
-				case 207:
-					SDL_RenderCopy(renderer, texts[29], NULL, &rectest);
-					break;
-				case 208:
-					SDL_RenderCopy(renderer, texts[30], NULL, &rectest);
-					break;
-				case 209:
-					SDL_RenderCopy(renderer, texts[31], NULL, &rectest);
-					break;
-				case 210:
-					SDL_RenderCopy(renderer, texts[32], NULL, &rectest);
-					break;
-				case 211:
-					SDL_RenderCopy(renderer, texts[33], NULL, &rectest);
-					break;
-				case 212:
-					SDL_RenderCopy(renderer, texts[34], NULL, &rectest);
-					break;
-				default:
-					break;
+			case 100:
+				SDL_RenderCopy(renderer, texts[0], NULL, &rectest);
+				break;
+			case 101:
+				SDL_RenderCopy(renderer, texts[1], NULL, &rectest);
+				break;
+			case 102:
+				SDL_RenderCopy(renderer, texts[2], NULL, &rectest);
+				break;
+			case 103:
+				SDL_RenderCopy(renderer, texts[3], NULL, &rectest);
+				break;
+			case 104:
+				SDL_RenderCopy(renderer, texts[4], NULL, &rectest);
+				break;
+			case 105:
+				SDL_RenderCopy(renderer, texts[5], NULL, &rectest);
+				break;
+			case 106:
+				SDL_RenderCopy(renderer, texts[6], NULL, &rectest);
+				break;
+			case 107:
+				SDL_RenderCopy(renderer, texts[7], NULL, &rectest);
+				break;
+			case 108:
+				SDL_RenderCopy(renderer, texts[8], NULL, &rectest);
+				break;
+			case 109:
+				SDL_RenderCopy(renderer, texts[9], NULL, &rectest);
+				break;
+			case 110:
+				SDL_RenderCopy(renderer, texts[10], NULL, &rectest);
+				break;
+			case 111:
+				SDL_RenderCopy(renderer, texts[11], NULL, &rectest);
+				break;
+			case 112:
+				SDL_RenderCopy(renderer, texts[12], NULL, &rectest);
+				break;
+			case 113:
+				SDL_RenderCopy(renderer, texts[13], NULL, &rectest);
+				break;
+			case 300:
+				SDL_RenderCopy(renderer, texts[14], NULL, &rectest);
+				break;
+			case 301:
+				SDL_RenderCopy(renderer, texts[15], NULL, &rectest);
+				break;
+			case 302:
+				SDL_RenderCopy(renderer, texts[16], NULL, &rectest);
+				break;
+			case 303:
+				SDL_RenderCopy(renderer, texts[35], NULL, &rectest);
+				break;
+			case 304:
+				SDL_RenderCopy(renderer, texts[36], NULL, &rectest);
+				break;
+			case 400:
+				SDL_RenderCopy(renderer, texts[17], NULL, &rectest);
+				break;
+			case 401:
+				SDL_RenderCopy(renderer, texts[18], NULL, &rectest);
+				break;
+			case 402:
+				SDL_RenderCopy(renderer, texts[19], NULL, &rectest);
+				break;
+			case 403:
+				SDL_RenderCopy(renderer, texts[20], NULL, &rectest);
+				break;
+			case 500:
+				SDL_RenderCopy(renderer, texts[21], NULL, &rectest);
+				break;
+			case 200:
+				SDL_RenderCopy(renderer, texts[22], NULL, &rectest);
+				break;
+			case 201:
+				SDL_RenderCopy(renderer, texts[23], NULL, &rectest);
+				break;
+			case 202:
+				SDL_RenderCopy(renderer, texts[24], NULL, &rectest);
+				break;
+			case 203:
+				SDL_RenderCopy(renderer, texts[25], NULL, &rectest);
+				break;
+			case 204:
+				SDL_RenderCopy(renderer, texts[26], NULL, &rectest);
+				break;
+			case 205:
+				SDL_RenderCopy(renderer, texts[27], NULL, &rectest);
+				break;
+			case 206:
+				SDL_RenderCopy(renderer, texts[28], NULL, &rectest);
+				break;
+			case 207:
+				SDL_RenderCopy(renderer, texts[29], NULL, &rectest);
+				break;
+			case 208:
+				SDL_RenderCopy(renderer, texts[30], NULL, &rectest);
+				break;
+			case 209:
+				SDL_RenderCopy(renderer, texts[31], NULL, &rectest);
+				break;
+			case 210:
+				SDL_RenderCopy(renderer, texts[32], NULL, &rectest);
+				break;
+			case 211:
+				SDL_RenderCopy(renderer, texts[33], NULL, &rectest);
+				break;
+			case 212:
+				SDL_RenderCopy(renderer, texts[34], NULL, &rectest);
+				break;
+			default:
+				break;
 			}
 		}
 	}
-	jack_rect = { g_logic->get_jack_x(),g_logic->get_jack_y(), w, h};
+	jack_rect = { g_logic->get_jack_x(),g_logic->get_jack_y(), w, h };
 	SDL_RenderCopy(renderer, jack_tex, NULL, &jack_rect);
+
+	for (int i = 0; i < g_logic->get_num_of_guards(); ++i) {
+
+		if (g_logic->get_guard(i)->get_horizontal() == g_logic->get_guard(i)->get_one_way()) {
+			jack_rect = { g_logic->get_guard(i)->get_x(), g_logic->get_guard(i)->get_y(), w, h };
+			SDL_RenderCopy(renderer, guard_texts[0], NULL, &jack_rect);
+		}
+		if (g_logic->get_guard(i)->get_horizontal() && !g_logic->get_guard(i)->get_one_way()) {
+			jack_rect = { g_logic->get_guard(i)->get_x(), g_logic->get_guard(i)->get_y(), w, h };
+			SDL_RenderCopy(renderer, guard_texts[1], NULL, &jack_rect);
+		}
+		if (!g_logic->get_guard(i)->get_horizontal() && g_logic->get_guard(i)->get_one_way()) {
+			jack_rect = { g_logic->get_guard(i)->get_x(), g_logic->get_guard(i)->get_y(), w, h };
+			SDL_RenderCopy(renderer, guard_texts[2], NULL, &jack_rect);
+		}
+	}
 }
 
 

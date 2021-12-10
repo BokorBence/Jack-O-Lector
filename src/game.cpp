@@ -14,12 +14,24 @@ Game::Game(int _lvl) {
 	{
 	case 1:
 		_level = new Level_1("levels/level1.txt");
+		set_num_of_guards(3);
+		for (int i = 0; i < get_num_of_guards(); ++i) {
+			guards.push_back(new Guard(8, 13, 2, true, 8));
+		}
 		break;
 	case 2:
 		_level = new Level_1("levels/level1.txt");
+		set_num_of_guards(3);
+		for (int i = 0; i < get_num_of_guards(); ++i) {
+			guards.push_back(new Guard(8, 13, 2, true, 8));
+		}
 		break;
 	case 3:
 		_level = new Level_1("levels/level1.txt");
+		set_num_of_guards(3);
+		for (int i = 0; i < get_num_of_guards(); ++i) {
+			guards.push_back(new Guard(8, 13, 2, true, 8));
+		}
 		break;
 	default:
 		break;

@@ -18,6 +18,8 @@ public:
 	Guard();
 	Guard(int _x, int _y, int _d, bool horizontal, int steps);
 	void Search();
+	bool get_horizontal() const { return horizontal; }
+	bool get_one_way() const { return one_way; }
 	int get_search_time() { return search_time; }
 	void Move();
 	~Guard() {}
