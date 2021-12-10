@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.9.2"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Jack O&#39;Lector: Tile Class Reference</title>
+<title>Jack O&#39;Lector: Level Class Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -64,28 +64,45 @@ $(function() {
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
-<a href="class_tile-members.html">List of all members</a>  </div>
-  <div class="headertitle"><div class="title">Tile Class Reference</div></div>
+<a href="#pub-attribs">Public Attributes</a> &#124;
+<a href="#pro-attribs">Protected Attributes</a> &#124;
+<a href="class_level-members.html">List of all members</a>  </div>
+  <div class="headertitle"><div class="title">Level Class Reference</div></div>
 </div><!--header-->
 <div class="contents">
+<div class="dynheader">
+Inheritance diagram for Level:</div>
+<div class="dyncontent">
+ <div class="center">
+  <img src="class_level.png" usemap="#Level_map" alt=""/>
+  <map id="Level_map" name="Level_map">
+<area href="class_level__1.html" alt="Level_1" shape="rect" coords="0,56,57,80"/>
+  </map>
+</div></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a0e869fdf1b69fb8860f7df58e82b8845"><td class="memItemLeft" align="right" valign="top"><a id="a0e869fdf1b69fb8860f7df58e82b8845" name="a0e869fdf1b69fb8860f7df58e82b8845"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>Tile</b> (std::string path_, int type)</td></tr>
-<tr class="separator:a0e869fdf1b69fb8860f7df58e82b8845"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9c2e1b3b00f857b0d2dc14d04586de02"><td class="memItemLeft" align="right" valign="top"><a id="a9c2e1b3b00f857b0d2dc14d04586de02" name="a9c2e1b3b00f857b0d2dc14d04586de02"></a>
-std::string&#160;</td><td class="memItemRight" valign="bottom"><b>get_path</b> () const</td></tr>
-<tr class="separator:a9c2e1b3b00f857b0d2dc14d04586de02"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a18011995e5204f0fb9151012fd91aabd"><td class="memItemLeft" align="right" valign="top"><a id="a18011995e5204f0fb9151012fd91aabd" name="a18011995e5204f0fb9151012fd91aabd"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>set_path</b> (std::string path_)</td></tr>
-<tr class="separator:a18011995e5204f0fb9151012fd91aabd"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a24de592c2b102c1940b61f6072e306fd"><td class="memItemLeft" align="right" valign="top"><a id="a24de592c2b102c1940b61f6072e306fd" name="a24de592c2b102c1940b61f6072e306fd"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>get_type</b> () const</td></tr>
-<tr class="separator:a24de592c2b102c1940b61f6072e306fd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2abc6c6a3ed4bb47da90d0f02c048f0b"><td class="memItemLeft" align="right" valign="top"><a id="a2abc6c6a3ed4bb47da90d0f02c048f0b" name="a2abc6c6a3ed4bb47da90d0f02c048f0b"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>get_objective</b> () const</td></tr>
+<tr class="separator:a2abc6c6a3ed4bb47da90d0f02c048f0b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
+Public Attributes</h2></td></tr>
+<tr class="memitem:ae4ac3672c98425d73262328ae5d0fc37"><td class="memItemLeft" align="right" valign="top"><a id="ae4ac3672c98425d73262328ae5d0fc37" name="ae4ac3672c98425d73262328ae5d0fc37"></a>
+<a class="el" href="class_tile.html">Tile</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>_tile_matrix</b> [38][50]</td></tr>
+<tr class="separator:ae4ac3672c98425d73262328ae5d0fc37"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-attribs" name="pro-attribs"></a>
+Protected Attributes</h2></td></tr>
+<tr class="memitem:abb4ca8e94a9ac28f5dca0b49545dc01c"><td class="memItemLeft" align="right" valign="top"><a id="abb4ca8e94a9ac28f5dca0b49545dc01c" name="abb4ca8e94a9ac28f5dca0b49545dc01c"></a>
+<a class="el" href="classwalking_entity.html">walkingEntity</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>jack</b></td></tr>
+<tr class="separator:abb4ca8e94a9ac28f5dca0b49545dc01c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a01a4f32ebc62fea6cf552c7cdf6b229e"><td class="memItemLeft" align="right" valign="top"><a id="a01a4f32ebc62fea6cf552c7cdf6b229e" name="a01a4f32ebc62fea6cf552c7cdf6b229e"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>_objective</b></td></tr>
+<tr class="separator:a01a4f32ebc62fea6cf552c7cdf6b229e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <hr/>The documentation for this class was generated from the following file:<ul>
-<li>include/<a class="el" href="tile_8hpp_source.html">tile.hpp</a></li>
+<li>include/<a class="el" href="level_8hpp_source.html">level.hpp</a></li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->
