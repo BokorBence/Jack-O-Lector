@@ -2,10 +2,7 @@
 #include "walkingEntity.hpp"
 #include "guard.hpp"
 #include <iostream>
-#include <chrono>
-#include <cstdint>
 #include "level.hpp"
-//#include "SDL_timer.h"
 
 
 class Game {
