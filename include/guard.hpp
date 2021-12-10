@@ -5,7 +5,7 @@ class Guard : public walkingEntity {
 
 private:
 	int search_radius = 2;
-	int search_time = 5;
+	int search_time = 25;
 	bool is_searching;
 	bool horizontal;
 	bool one_way;

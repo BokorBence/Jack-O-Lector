@@ -97,7 +97,7 @@ void Guard::Search()
 {
 	if (search_time == 0) {
 		is_searching = false;
-		search_time = 5;
+		search_time = 25;
 	}
 	search_time--;
 }

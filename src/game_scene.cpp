@@ -46,10 +46,10 @@ Game_scene::Game_scene(SDL_Renderer* r, Scene* next_scene)
 	surfs[35] = IMG_Load("resources/longgrave1.png");
 	surfs[36] = IMG_Load("resources/longgrave2.png");
 
-	surfs[0] = IMG_Load("resources/downrightguard.png");
-	surfs[1] = IMG_Load("resources/downleftguard.png");
-	surfs[2] = IMG_Load("resources/uprightguard.png");
-	surfs[3] = IMG_Load("resources/upleftguard.png");
+	guard_surfs[0] = IMG_Load("resources/downrightguard.png");
+	guard_surfs[1] = IMG_Load("resources/downleftguard.png");
+	guard_surfs[2] = IMG_Load("resources/uprightguard.png");
+	guard_surfs[3] = IMG_Load("resources/upleftguard.png");
 
 	int k = sizeof(surfs) / sizeof(surfs[0]);
 	for (int i = 0; i < k; ++i) {
@@ -215,7 +215,7 @@ void Game_scene::draw_scene()
 
 	for (int i = 0; i < g_logic->get_num_of_guards(); ++i) {
 
-		if (g_logic->get_guard(i)->get_horizontal() == g_logic->get_guard(i)->get_one_way()) {
+		if (g_logic->get_guard(i)->get_one_way()) {
 			jack_rect = { g_logic->get_guard(i)->get_x(), g_logic->get_guard(i)->get_y(), w, h };
 			SDL_RenderCopy(renderer, guard_texts[0], NULL, &jack_rect);
 		}
@@ -223,7 +223,7 @@ void Game_scene::draw_scene()
 			jack_rect = { g_logic->get_guard(i)->get_x(), g_logic->get_guard(i)->get_y(), w, h };
 			SDL_RenderCopy(renderer, guard_texts[1], NULL, &jack_rect);
 		}
-		if (!g_logic->get_guard(i)->get_horizontal() && g_logic->get_guard(i)->get_one_way()) {
+		if (!g_logic->get_guard(i)->get_horizontal() && !g_logic->get_guard(i)->get_one_way()) {
 			jack_rect = { g_logic->get_guard(i)->get_x(), g_logic->get_guard(i)->get_y(), w, h };
 			SDL_RenderCopy(renderer, guard_texts[2], NULL, &jack_rect);
 		}
