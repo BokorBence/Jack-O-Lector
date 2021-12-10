@@ -1,8 +1,9 @@
 #include "game_scene.hpp"
 
-Game_scene::Game_scene(SDL_Renderer* r, Scene* next_scene)
+Game_scene::Game_scene(SDL_Renderer* r, Scene* win_scene, Scene* lose_scene)
 {
-	next = next_scene;
+	win = win_scene;
+	lose = lose_scene;
 	renderer = r;
 	jack_rect = { 10,10, w, h };
 	g_logic = new Game(1);
@@ -244,6 +245,11 @@ void Game_scene::handle_events(const SDL_Event &ev)
 	}
 	if (ev.type == SDL_KEYDOWN && ev.key.keysym.sym == SDLK_d) {
 		g_logic->keyBoardInput('d');
+	}
+
+	if (g_logic->get_game_over())
+	{
+		push_over_me = lose;
 	}
 }
 

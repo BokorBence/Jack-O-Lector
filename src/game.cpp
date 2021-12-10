@@ -9,6 +9,7 @@ Game::Game(int _lvl) {
 	guard = new Guard(8, 13, 2, true, 8);
 	Jack = new walkingEntity(55, 3, 2);
 	elapsedTime = 0;
+	is_game_over = false;
 
 	switch (_lvl)
 	{
@@ -72,13 +73,49 @@ void Game::gameStep() {
 
 		}
 	}
-
+	game_check();
 }
 
 //g_logic->_level->_tile_matrix[0][0]->get_type()
+void Game::game_check()
+{
+	if (is_game_over) return;
 
-bool Game::isWall(int x, int y) {
-	return(_level->_tile_matrix[x/16][y/16]->get_type() / 100 == 2);
+	for (int i = 0;i < get_num_of_guards();++i)
+	{
+		int xx = Jack->botRightX();
+		int yy = Jack->botRightY();
+		if (xx <= guards[i]->botRightX() && xx >= guards[i]->botLeftX() && yy <= guards[i]->botLeftY() && yy >= guards[i]->get_y())
+		{
+			std::cout << "Lost:eltüntek \n";
+			is_game_over = true;
+		}
+		xx = Jack->botLeftX();
+		yy = Jack->botLeftY();
+		if (xx <= guards[i]->botRightX() && xx >= guards[i]->botLeftX() && yy <= guards[i]->botLeftY() && yy >= guards[i]->get_y())
+		{
+			std::cout << "Lost:eltüntek \n";
+			is_game_over = true;
+		}
+		xx = Jack->get_x();
+		yy = Jack->get_y();
+		if (xx <= guards[i]->botRightX() && xx >= guards[i]->botLeftX() && yy <= guards[i]->botLeftY() && yy >= guards[i]->get_y())
+		{
+			std::cout << "Lost:eltüntek \n";
+			is_game_over = true;
+		}
+		xx = Jack->rightTopX();
+		yy = Jack->get_y();
+		if (xx <= guards[i]->botRightX() && xx >= guards[i]->botLeftX() && yy <= guards[i]->botLeftY() && yy >= guards[i]->get_y())
+		{
+			std::cout << "Lost:eltüntek \n";
+			is_game_over = true;
+		}
+
+	}
+
+
+
 }
 
 void Game::keyBoardInput(char c) {

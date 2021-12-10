@@ -8,6 +8,7 @@
 #include "include/main_menu_scene.hpp"
 #include "include/level_select_menu_scene.hpp"
 #include "include/game_scene.hpp"
+#include "include/game_over_scene.hpp"
 #include <stack>
 
 int main(int argc, char* argv[]) {
@@ -38,8 +39,12 @@ int main(int argc, char* argv[]) {
     
 
     Main_menu_scene main_menu(renderer, &quit, NULL);
-    Game_scene game(renderer, NULL);
+    Game_over_scene victory(renderer, &quit, true);
+    Game_over_scene defeat(renderer, &quit, false);
+    Game_scene game(renderer, &victory,&defeat);
     Level_select_menu_scene level_select_menu(renderer, &main_menu, &game);
+
+
 
     scenes.push(&game);
     scenes.push(&level_select_menu);

@@ -18,6 +18,9 @@ public:
 	int botLeftY() { return y + 31; }
 	int botRightX() { return x + 15; }
 	int botRightY() { return y + 31; }
+	int midX() { return x + 8; }
+	int midY() { return y + 16; }
+	int rightTopX() { return x + 15; }
 	int moveUp();
 	int moveDown();
 	int moveLeft();

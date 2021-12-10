@@ -14,9 +14,11 @@ private:
 	int elapsedTime;
 	int num_of_guards;
 	std::vector<Guard*> guards;
+	bool is_game_over;
 public:
 	Level* _level;
 	Game(int _lvl);
+	bool get_game_over() const { return is_game_over; }
 	int get_jack_x() const { return Jack->get_x(); }
 	int get_jack_y() const { return Jack->get_y(); }
 	Guard* get_guard(int a) const { return guards[a]; }
@@ -24,5 +26,5 @@ public:
 	void set_num_of_guards(int a) { num_of_guards = a; }
 	void keyBoardInput(char c);
 	void gameStep();
-	bool isWall(int x, int y);
+	void game_check();
 };
