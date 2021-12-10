@@ -43,6 +43,8 @@ Game_scene::Game_scene(SDL_Renderer* r, Scene* next_scene)
 	surfs[32] = IMG_Load("resources/wallendleft.png");
 	surfs[33] = IMG_Load("resources/wallendright.png");
 	surfs[34] = IMG_Load("resources/superwall.png");
+	surfs[35] = IMG_Load("resources/longgrave1.png");
+	surfs[36] = IMG_Load("resources/longgrave2.png");
 	int k = sizeof(surfs) / sizeof(surfs[0]);
 	for (int i = 0; i < k; ++i) {
 		texts[i] = SDL_CreateTextureFromSurface(renderer, surfs[i]);
@@ -133,6 +135,12 @@ void Game_scene::draw_scene()
 					break;
 				case 302:
 					SDL_RenderCopy(renderer, texts[16], NULL, &rectest);
+					break;
+				case 303:
+					SDL_RenderCopy(renderer, texts[35], NULL, &rectest);
+					break;
+				case 304:
+					SDL_RenderCopy(renderer, texts[36], NULL, &rectest);
 					break;
 				case 400:
 					SDL_RenderCopy(renderer, texts[17], NULL, &rectest);
