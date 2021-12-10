@@ -79,8 +79,10 @@ void Game_scene::init_level(int level_number)
 
 void Game_scene::draw_scene()
 {
+	g_logic->gameStep();
 	jack_rect = { 10,10, w, h };
 	SDL_RenderCopy(renderer, jack_tex, NULL, &jack_rect);
+<<<<<<< HEAD
 	for (int i = 0; i < 38; ++i) {
 		for (int j = 0; j < 50; ++j) {
 			rectest = {j*16,i*16,16,16};
@@ -202,11 +204,25 @@ void Game_scene::draw_scene()
 		}
 	}
 	
+=======
+
+>>>>>>> character_movement
 }
 
 
 void Game_scene::handle_events(const SDL_Event &ev)
 {
-
+	if (ev.type == SDL_KEYDOWN && ev.key.keysym.sym == SDLK_w) {
+		g_logic->keyBoardInput('w');
+	}
+	if (ev.type == SDL_KEYDOWN && ev.key.keysym.sym == SDLK_a) {
+		g_logic->keyBoardInput('a');
+	}
+	if (ev.type == SDL_KEYDOWN && ev.key.keysym.sym == SDLK_s) {
+		g_logic->keyBoardInput('s');
+	}
+	if (ev.type == SDL_KEYDOWN && ev.key.keysym.sym == SDLK_d) {
+		g_logic->keyBoardInput('d');
+	}
 }
 
